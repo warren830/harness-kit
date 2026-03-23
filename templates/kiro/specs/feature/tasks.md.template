@@ -1,0 +1,45 @@
+<!-- =================================================================
+     Kiro Feature Spec: Tasks
+     Implementation steps. Execute one at a time.
+     Status: [ ] todo, [x] done, [~] in progress
+     ================================================================= -->
+
+# Tasks: [Feature Name]
+
+## Phase 1: Foundation
+
+- [ ] **Database schema**: Add [model/fields] to prisma/schema.prisma and run migration
+  - Verify: `pnpm prisma migrate dev` succeeds, `pnpm prisma generate` runs clean
+- [ ] **Types**: Create type definitions in src/types/[name].types.ts
+  - Verify: `pnpm tsc --noEmit` passes
+
+## Phase 2: Backend
+
+- [ ] **Repository**: Create src/repositories/[name].repository.ts with CRUD operations
+  - Verify: Unit tests pass
+- [ ] **Service**: Create src/services/[name].service.ts with business logic
+  - Verify: Unit tests pass
+- [ ] **API routes**: Create src/app/api/[resource]/route.ts with input validation
+  - Verify: Integration tests pass, `curl` returns expected responses
+
+## Phase 3: Frontend
+
+- [ ] **Component**: Create src/components/[Name]/index.tsx
+  - Must handle: loading state, error state, empty state, data state
+  - Verify: Component tests pass
+- [ ] **Page integration**: Wire component into page at src/app/[page]/page.tsx
+  - Verify: Dev server shows feature working
+
+## Phase 4: Verification
+
+- [ ] **All tests pass**: `pnpm test -- --watchAll=false`
+- [ ] **Lint clean**: `pnpm lint`
+- [ ] **Types clean**: `pnpm tsc --noEmit`
+- [ ] **Build succeeds**: `pnpm build`
+- [ ] **Manual check**: Verify feature works end-to-end in dev server
+
+## Phase 5: Cleanup
+
+- [ ] **Update docs**: Update AGENTS.md if any new conventions were established
+- [ ] **Update ARCHITECTURE.md**: If new modules/patterns were added
+- [ ] **Remove TODOs**: Check for any TODO comments left behind

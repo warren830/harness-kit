@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "harness-kit"
+version = "0.1.0"
+description = "Toolkit for Harness Engineering — build constraints, feedback loops, and control systems around AI coding agents"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "harness-kit contributors" }]
+keywords = ["harness-engineering", "ai-agents", "claude-code", "kiro", "developer-tools"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+harness-kit = "harness_kit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/harness-kit/harness-kit"
+Repository = "https://github.com/harness-kit/harness-kit"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/harness_kit"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true

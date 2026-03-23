@@ -1,0 +1,41 @@
+---
+name: CLAUDE.md Adapter Template
+description: Claude Code configuration that imports AGENTS.md and adds Claude-specific settings.
+when_to_use: Any project using Claude Code. Place this at project root as CLAUDE.md.
+---
+
+<!-- =================================================================
+     CLAUDE.md Template — harness-kit
+
+     1. Copy to your project root as CLAUDE.md
+     2. Replace [brackets] with your project's values
+     3. AGENTS.md must exist in the same directory (or adjust the @import path)
+     ================================================================= -->
+
+# CLAUDE.md
+
+## Import Universal Rules
+@AGENTS.md
+
+## Claude Code Configuration
+
+### Workflow Rules
+- Do NOT auto-commit or push without explicit user confirmation
+- When compacting, preserve the full list of modified files and design decisions made
+- Before creating new files, check if a similar file already exists
+
+### Model Preferences
+- Use Sonnet for routine tasks (file edits, test writing, lint fixes)
+- Use Opus for architecture decisions, complex debugging, and multi-file refactoring
+
+### Forbidden Actions
+- Do NOT modify files in [src/core/] without explicit approval
+- Do NOT add `any` type in TypeScript or `# type: ignore` in Python
+- Do NOT delete test files or reduce test coverage
+- Do NOT install new dependencies without discussing the need first
+
+### Compaction Instructions
+When context is compacted, always preserve:
+- List of all files modified in this session
+- Any architecture or design decisions made
+- Current task progress and remaining steps

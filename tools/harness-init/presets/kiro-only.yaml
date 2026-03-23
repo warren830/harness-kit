@@ -1,0 +1,20 @@
+# Preset: Kiro only
+tools: kiro
+level: 2
+
+files:
+  # Layer 1: Universal
+  - target: AGENTS.md
+    template: universal/agents-md/standard
+
+  # Layer 2+3: Kiro features
+  - target: .kiro/steering/product.md
+    template: kiro/steering/product.md.template
+  - target: .kiro/steering/tech.md
+    template: kiro/steering/tech.md.template
+  - target: .kiro/steering/structure.md
+    template: kiro/steering/structure.md.template
+
+  # Knowledge base
+  - target: docs/ARCHITECTURE.md
+    template: universal/knowledge-base/docs/ARCHITECTURE.md

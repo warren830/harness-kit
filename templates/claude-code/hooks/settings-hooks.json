@@ -1,0 +1,43 @@
+{
+  "// INSTRUCTIONS": "Copy this to your project as .claude/settings.json. Uncomment the hooks you want to use. Delete these comment lines.",
+  "// MINIMUM": "Start with just Stop > require-tests. Add others as needed.",
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/block-destructive.sh",
+        "// description": "Block rm -rf, git push --force, DROP TABLE, etc."
+      },
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/restrict-paths.sh",
+        "// description": "Block edits to protected directories (src/core/, .env, etc.)"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/auto-lint.sh",
+        "// description": "Run linter on every file edit"
+      },
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/auto-format.sh",
+        "// description": "Run formatter on every file edit"
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/require-tests.sh",
+        "// description": "HIGHEST IMPACT: Agent cannot stop until tests pass"
+      },
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/require-lint.sh",
+        "// description": "Agent cannot stop until lint is clean"
+      }
+    ]
+  }
+}

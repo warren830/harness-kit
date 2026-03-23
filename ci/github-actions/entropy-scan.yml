@@ -1,0 +1,69 @@
+# Entropy Scan — GitHub Actions Workflow
+#
+# Runs weekly to detect documentation drift, rule conflicts, and stale content.
+# Opens an issue if problems are found.
+#
+# Installation:
+#   Copy to your project as .github/workflows/entropy-scan.yml
+#   Requires: pip install harness-kit
+
+name: Weekly Entropy Scan
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 9:00 UTC
+  workflow_dispatch:        # Allow manual trigger
+
+jobs:
+  entropy-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install harness-kit
+        run: pip install harness-kit
+
+      - name: Run entropy scan
+        id: scan
+        run: |
+          harness-kit scan . > scan-results.txt 2>&1 || true
+          echo "results<<EOF" >> $GITHUB_OUTPUT
+          cat scan-results.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          # Check if there are errors or warnings
+          if grep -q "ERROR\|WARN" scan-results.txt; then
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run harness score
+        id: score
+        run: |
+          harness-kit score . > score-results.txt 2>&1 || true
+          echo "results<<EOF" >> $GITHUB_OUTPUT
+          cat score-results.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create issue if problems found
+        if: steps.scan.outputs.has_issues == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const scanResults = `${{ steps.scan.outputs.results }}`;
+            const scoreResults = `${{ steps.score.outputs.results }}`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔍 Weekly Entropy Scan — Issues Found`,
+              body: `## Entropy Scan Results\n\n\`\`\`\n${scanResults}\n\`\`\`\n\n## Harness Score\n\n\`\`\`\n${scoreResults}\n\`\`\`\n\n---\n*Automated by harness-kit entropy scan*`,
+              labels: ['entropy', 'maintenance']
+            });

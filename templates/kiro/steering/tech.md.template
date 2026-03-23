@@ -1,0 +1,51 @@
+---
+inclusion: always
+---
+
+# Technical Context
+
+## Tech Stack
+
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| Language | [TypeScript / Python / Go] | [Strict mode / type hints required] |
+| Frontend | [Next.js 14 / React / Vue] | [App Router / SPA] |
+| Backend | [Express / FastAPI / Gin] | |
+| Database | [PostgreSQL / MongoDB / DynamoDB] | [via Prisma / Mongoose / AWS SDK] |
+| Auth | [NextAuth / Clerk / Custom JWT] | |
+| Hosting | [Vercel / AWS / GCP] | |
+| CI/CD | [GitHub Actions / GitLab CI] | |
+
+## Development Setup
+
+| Action | Command | Notes |
+|--------|---------|-------|
+| Install | `[pnpm install]` | [Do NOT use npm or yarn] |
+| Dev server | `[pnpm dev]` | [Runs on localhost:3000] |
+| Test | `[pnpm test -- --watchAll=false]` | [< 1 min target] |
+| Lint | `[pnpm lint]` | [Zero errors required] |
+| Type check | `[pnpm tsc --noEmit]` | |
+| Build | `[pnpm build]` | [Must pass before PR] |
+| DB migrate | `[pnpm prisma migrate dev]` | |
+
+## Environment
+
+- Local env file: `[.env.local]` (never commit)
+- Copy from: `[.env.example]`
+- Required vars: `[DATABASE_URL, NEXT_PUBLIC_API_URL, AUTH_SECRET]`
+
+## Key Dependencies
+
+| Package | Purpose | Docs |
+|---------|---------|------|
+| [prisma] | [ORM / database access] | [prisma.io/docs] |
+| [zod] | [Input validation / schemas] | [zod.dev] |
+| [tailwindcss] | [Styling] | [tailwindcss.com/docs] |
+
+## Technical Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| [pnpm over npm] | [Faster installs, strict dependency resolution] |
+| [Server components by default] | [Reduce client JS bundle size] |
+| [Prisma over raw SQL] | [Type safety, migration management] |

@@ -1,0 +1,53 @@
+# Docker Compose template for isolated agent environments
+#
+# Each agent task can run in its own container with:
+# - Full codebase access (mounted as volume)
+# - Isolated database
+# - Isolated ports
+#
+# Usage:
+#   docker compose up -d          # Start environment
+#   docker compose exec app bash  # Enter the container
+#   docker compose down -v        # Destroy environment (including data)
+#
+# Customize the service definitions for your project's stack.
+
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+      - node_modules:/workspace/node_modules  # Persist deps across rebuilds
+    working_dir: /workspace
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/app_dev
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_dev
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  node_modules:
+  pgdata:

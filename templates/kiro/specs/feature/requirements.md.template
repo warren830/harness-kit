@@ -1,0 +1,50 @@
+<!-- =================================================================
+     Kiro Feature Spec: Requirements
+     Fill in user stories and acceptance criteria.
+     Kiro uses this to generate the design and task list.
+     ================================================================= -->
+
+# Feature: [Feature Name]
+
+## Summary
+
+[One paragraph: what this feature does and why users need it.]
+
+## User Stories
+
+### Story 1: [Primary user action]
+
+**As a** [user role],
+**I want to** [action],
+**So that** [benefit].
+
+**Acceptance Criteria:**
+- [ ] [Criterion 1: specific, testable condition]
+- [ ] [Criterion 2]
+- [ ] [Criterion 3]
+
+### Story 2: [Secondary user action]
+
+**As a** [user role],
+**I want to** [action],
+**So that** [benefit].
+
+**Acceptance Criteria:**
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
+
+## Out of Scope
+
+<!-- Explicitly list what this feature does NOT include -->
+
+- [Not included: e.g., "Admin management UI — separate feature"]
+- [Not included: e.g., "Email notifications — Phase 2"]
+
+## Dependencies
+
+- [e.g., "Requires auth system to be implemented first"]
+- [e.g., "Depends on API endpoint /api/users existing"]
+
+## Open Questions
+
+- [ ] [Question that needs human input before proceeding]

@@ -1,0 +1,56 @@
+---
+inclusion: always
+---
+
+# Repository Structure
+
+```
+[project-root/
+├── src/
+│   ├── app/              — Next.js App Router (pages + API routes)
+│   ├── components/       — React UI components
+│   │   └── [Name]/
+│   │       ├── index.tsx
+│   │       └── [Name].test.tsx
+│   ├── services/         — Business logic
+│   ├── repositories/     — Database access (Prisma)
+│   ├── lib/              — Shared utilities
+│   └── types/            — TypeScript type definitions
+├── prisma/
+│   └── schema.prisma     — Database schema (single file)
+├── docs/                 — Project documentation
+│   ├── ARCHITECTURE.md
+│   └── designs/
+├── public/               — Static assets
+└── __tests__/            — Integration tests]
+```
+
+## Dependency Rules
+
+```
+[UI / Pages  →  Services  →  Repositories  →  Types]
+                                                 ↑
+                              (dependencies flow down only)
+```
+
+- [UI must NOT import from repositories directly]
+- [Services must NOT import from UI]
+- [All database access goes through repositories/]
+
+## Naming Conventions
+
+| Item | Convention | Example |
+|------|-----------|---------|
+| Components | PascalCase directory + index.tsx | `components/UserCard/index.tsx` |
+| Services | camelCase + `.service.ts` | `services/auth.service.ts` |
+| Types | camelCase + `.types.ts` | `types/user.types.ts` |
+| API routes | lowercase + `route.ts` | `app/api/users/route.ts` |
+| Tests | same name + `.test.tsx` | `UserCard.test.tsx` |
+
+## Protected Areas
+
+<!-- Files/directories that should not be modified without explicit approval -->
+
+- [`src/core/`] — Core business rules, changes need review
+- [`prisma/schema.prisma`] — Schema changes need migration plan
+- [`src/auth/`] — Security-sensitive, requires careful review

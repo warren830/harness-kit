@@ -1,0 +1,84 @@
+# Harness Health Check — GitHub Actions Workflow
+#
+# Runs on every PR to verify harness files are healthy.
+# Checks: rule files exist, no unfilled placeholders, hooks are executable.
+#
+# Installation:
+#   Copy to your project as .github/workflows/harness-check.yml
+
+name: Harness Health Check
+
+on:
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - '.claude/**'
+      - '.kiro/**'
+      - 'docs/ARCHITECTURE.md'
+      - 'docs/QUALITY.md'
+      - 'docs/BELIEFS.md'
+
+jobs:
+  harness-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check rule files exist
+        run: |
+          echo "Checking harness files..."
+          MISSING=0
+
+          if [ ! -f "AGENTS.md" ] && [ ! -f "CLAUDE.md" ]; then
+            echo "::error::No AGENTS.md or CLAUDE.md found at project root"
+            MISSING=1
+          fi
+
+          if [ $MISSING -eq 1 ]; then
+            exit 1
+          fi
+
+          echo "Rule files present."
+
+      - name: Check for unfilled placeholders
+        run: |
+          echo "Scanning for unfilled placeholders..."
+          FOUND=0
+
+          for file in AGENTS.md CLAUDE.md; do
+            if [ -f "$file" ]; then
+              if grep -qE '\[framework\]|\[React/Vue|\[Node.js/Python' "$file"; then
+                echo "::warning file=$file::Contains unfilled template placeholders"
+                FOUND=1
+              fi
+            fi
+          done
+
+          if [ $FOUND -eq 1 ]; then
+            echo "::warning::Some harness files still contain template placeholders. Please customize them."
+          fi
+
+      - name: Check hook scripts are executable
+        run: |
+          if [ -d ".claude/hooks" ]; then
+            echo "Checking hook permissions..."
+            for hook in .claude/hooks/*.sh; do
+              if [ -f "$hook" ] && [ ! -x "$hook" ]; then
+                echo "::error file=$hook::Hook script is not executable. Run: chmod +x $hook"
+                exit 1
+              fi
+            done
+            echo "All hooks executable."
+          fi
+
+      - name: Check rule file sizes
+        run: |
+          for file in AGENTS.md CLAUDE.md; do
+            if [ -f "$file" ]; then
+              LINES=$(wc -l < "$file")
+              if [ "$LINES" -gt 200 ]; then
+                echo "::warning file=$file::$file is $LINES lines (recommended max: 200). Consider splitting."
+              fi
+            fi
+          done

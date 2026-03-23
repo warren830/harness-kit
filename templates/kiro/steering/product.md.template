@@ -1,0 +1,42 @@
+---
+inclusion: always
+---
+
+<!-- =================================================================
+     Kiro Steering: Product Context
+     Replace all [brackets] with your project's real information.
+     Delete these comments when done.
+     ================================================================= -->
+
+# Product Context
+
+## What Is This Project?
+
+[One paragraph: what the product does, the problem it solves, and why it matters.]
+
+## Target Users
+
+- [Primary: e.g., "SaaS development teams of 5-20 engineers"]
+- [Secondary: e.g., "DevOps engineers managing AI agent infrastructure"]
+
+## Key Features
+
+1. [Feature 1: brief description]
+2. [Feature 2: brief description]
+3. [Feature 3: brief description]
+
+## Business Constraints
+
+- [e.g., "Must support multi-tenancy — every query must be scoped to the tenant"]
+- [e.g., "GDPR compliance required — PII must be encrypted at rest"]
+- [e.g., "Target response time < 200ms for all API endpoints"]
+
+## Current Status
+
+- [e.g., "MVP launched, 50 beta users, iterating on feedback"]
+- [e.g., "Pre-launch, building core features for Q2 release"]
+
+## What Success Looks Like
+
+- [e.g., "100 teams using the product daily within 6 months"]
+- [e.g., "Average harness setup time under 5 minutes"]

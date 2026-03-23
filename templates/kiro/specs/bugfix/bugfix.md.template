@@ -1,0 +1,57 @@
+<!-- =================================================================
+     Kiro Bugfix Spec
+     Structured bug analysis: current vs. expected vs. unchanged behavior.
+     Forces systematic diagnosis before fixing.
+     ================================================================= -->
+
+# Bugfix: [Bug Title]
+
+## Bug Report
+
+**Reported by**: [who]
+**Date**: [YYYY-MM-DD]
+**Severity**: [Critical / High / Medium / Low]
+**Affected area**: [which module/feature]
+
+## Reproduction Steps
+
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+## Current Behavior (broken)
+
+[What actually happens. Include error messages, screenshots, or logs if available.]
+
+```
+[Error output or unexpected behavior]
+```
+
+## Expected Behavior (desired)
+
+[What should happen instead.]
+
+## Unchanged Behavior (guard rails)
+
+<!-- This is critical: list what must NOT change when fixing this bug. -->
+<!-- Prevents the fix from introducing regressions. -->
+
+- [Feature X must continue working as before]
+- [API response format must not change]
+- [Other users' data must not be affected]
+
+## Root Cause Analysis
+
+<!-- Fill this in AFTER investigation, BEFORE implementing the fix. -->
+
+**Root cause**: [Why is this happening?]
+**Location**: [Which file(s) and line(s)?]
+**Trigger**: [What specific condition causes the bug?]
+
+## Fix Plan
+
+- [ ] Write regression test that reproduces the bug (must fail before fix)
+- [ ] Implement minimal fix at [location]
+- [ ] Verify regression test passes
+- [ ] Verify unchanged behaviors are intact
+- [ ] Run full test suite
