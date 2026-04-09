@@ -20,8 +20,8 @@
 - Chinese translations go in separate `-zh.md` files, not inline
 
 ### Project-Specific Patterns
-- Template files follow this structure: title → overview → when to use → when not to use → template content → examples → customization guide
-- Guide files follow this structure: title → problem statement → solution → step-by-step → examples → anti-patterns → references
+- Template files (harness/) follow this structure: title → overview → when to use → when not to use → template content → examples → customization guide
+- Concept guides (concepts/) follow this structure: title → problem statement → when to use → when not to use → content → apply this → references
 - Python tools use: argparse for CLI, pathlib for paths, yaml for config, rich for output formatting
 
 ### Forbidden Actions

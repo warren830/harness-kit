@@ -15,18 +15,18 @@ harness-kit is an open-source toolkit for Harness Engineering — helping teams 
 - CI: GitHub Actions
 - License: MIT
 
-## Repository Structure
+## Repository Structure (v0.2)
 
 ```
-templates/
-  universal/     — Cross-platform templates (AGENTS.md, knowledge-base, constraints, entropy)
+concepts/        — Theory & methodology (Fowler framework, autonomy grading, guides)
+harness/         — Copy-paste-ready templates, organized by tool
+  universal/     — Cross-platform (AGENTS.md variants, knowledge-base, constraints, entropy)
   claude-code/   — Claude Code specific (hooks, skills, rules)
   kiro/          — Kiro specific (steering, specs, hooks)
   combo/         — Claude Code + Kiro dual-tool collaboration
   environments/  — Isolation scripts (worktree, docker)
+  ci/            — CI/CD templates (GitHub Actions)
 tools/           — CLI tools (harness-init, harness-score, entropy-scanner)
-guides/          — How-to guides and methodology docs
-ci/              — CI/CD templates (GitHub Actions)
 research/        — Research materials (read-only reference)
 ```
 
@@ -35,13 +35,13 @@ research/        — Research materials (read-only reference)
 - Run Python tools: `python tools/<tool-name>/<script>.py`
 - Lint Python: `ruff check tools/`
 - Type check Python: `mypy tools/`
-- Lint Markdown: `npx markdownlint 'templates/**/*.md' 'guides/**/*.md'`
+- Lint Markdown: `npx markdownlint 'concepts/**/*.md' 'harness/**/*.md'`
 
 ## Writing Conventions
 
 - Every template file MUST include a "When to use" and "When NOT to use" section
 - Every rule/constraint in a template MUST have a concrete example, not abstract advice
-- AGENTS.md templates should be ~100 lines max (OpenAI principle: "table of contents, not encyclopedia")
+- AGENTS.md templates: starter ~30 lines, standard ~80 lines, advanced ~150 lines (GitHub 2500-repo data)
 - Keep English for code/technical terms, provide Chinese translations in separate `-zh.md` files
 - Template files use `.md` extension with optional YAML frontmatter for metadata
 
@@ -52,10 +52,12 @@ research/        — Research materials (read-only reference)
 - Do NOT put research/ files content into templates — research is reference material, not template content
 - The `research/` directory is read-only reference; do not modify those files when working on templates
 - When creating example AGENTS.md files, always base them on real project scenarios, not hypothetical ones
+- Do NOT add harness/ templates without ensuring they have "When to use / When NOT to use" sections
 
 ## Verification
 
 After modifying any template or guide:
 1. Ensure Markdown renders correctly (no broken links, tables, code blocks)
 2. If modifying Python tools: `ruff check tools/ && mypy tools/`
-3. All templates must be self-contained — a user should understand them without reading other files
+3. All harness/ templates must be self-contained — a user should understand them without reading other files
+4. All concepts/ guides must cite research/ sources — no unsourced claims

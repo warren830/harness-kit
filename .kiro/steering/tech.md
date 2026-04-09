@@ -14,14 +14,15 @@ inclusion: always
 ## Architecture Principles
 - Templates are pure Markdown — zero runtime dependencies
 - Tools are standalone Python scripts — no heavy frameworks
-- Three-layer template architecture: Universal (AGENTS.md) → Platform Adapter → Platform Features
+- Dual-layer architecture: concepts/ (theory) → harness/ (execution templates)
+- Fowler's Guides/Sensors framework as classification system (see concepts/fowler-framework-guide.md)
 - AGENTS.md is the "constitution" — platform files are "implementation details"
 
 ## File Conventions
-- Templates: `templates/<scope>/<category>/<name>.md`
-- Guides: `guides/<topic>.md`
+- Concept guides: `concepts/<topic>-guide.md`
+- Harness templates: `harness/<tool>/<category>/<name>.md`
 - Tools: `tools/<tool-name>/<script>.py`
-- Chinese translations: same name with `-zh.md` suffix
+- Chinese translations: same name with `-zh.md` suffix (deferred to v0.3)
 
 ## Quality Standards
 - Every template must include "When to use" and "When NOT to use"
