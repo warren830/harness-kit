@@ -26,13 +26,13 @@ harness-kit v0.1 ships 60+ templates, 10 guides, and research materials, but the
   3. Verification pyramid: linter → tests → formal verification (from research-07, Datadog)
   4. Context budget: 40% utilization ceiling, dumb zone warning, sub-agent as context firewall (from research-06)
 - Reclassify all 60 existing templates into new `harness/` structure
-- Update AGENTS.md templates based on GitHub 2500-repo findings:
+- Update HARNESS.md templates based on GitHub 2500-repo findings:
   - Commands first (most referenced by agents)
   - Three-tier permission boundary: Always / Ask First / Never
   - No architecture overviews (agents discover these themselves)
   - Length guidance: start < 150 lines (GitHub), aspirational < 60 lines (HumanLayer)
   - Code examples >> text descriptions
-  - Warning: LLM-generated AGENTS.md reduces performance 0.5-2%, increases cost 20-23%
+  - Warning: LLM-generated HARNESS.md reduces performance 0.5-2%, increases cost 20-23%
 - Layered user journey: Starter → Standard → Advanced paths through the material
 - Updated README reflecting new structure and framework alignment
 - Migration guide for v0.1 users
@@ -65,7 +65,7 @@ harness-kit v0.1 ships 60+ templates, 10 guides, and research materials, but the
 
 ### Template Updates
 
-10. AGENTS.md templates (standard, minimal, monorepo) updated per GitHub 2500-repo data:
+10. HARNESS.md templates (standard, minimal, monorepo) updated per GitHub 2500-repo data:
     - Commands section moved to top
     - Three-tier permission boundary (Always / Ask First / Never) added
     - Architecture overview sections removed
@@ -77,8 +77,8 @@ harness-kit v0.1 ships 60+ templates, 10 guides, and research materials, but the
 ### User Journey
 
 13. README provides three entry paths: "Quick Start (5 min)" → "Standard Setup (30 min)" → "Advanced Harness (deep dive)"
-14. Quick Start: minimal AGENTS.md + 1 hook → working harness in 5 minutes
-15. Standard Setup: full AGENTS.md + hooks + rules + verification layer
+14. Quick Start: minimal HARNESS.md + 1 hook → working harness in 5 minutes
+15. Standard Setup: full HARNESS.md + hooks + rules + verification layer
 16. Advanced: all of Standard + autonomy grading + verification pyramid + context budgeting
 
 ## Success Criteria
@@ -93,7 +93,7 @@ harness-kit v0.1 ships 60+ templates, 10 guides, and research materials, but the
 
 - Fowler's framework is stable and won't change significantly (published March 2026, by Martin Fowler — likely stable)
 - The 40% context utilization ceiling applies broadly, not just to specific models
-- GitHub's 2500-repo findings for AGENTS.md generalize to CLAUDE.md and other agent config files
+- GitHub's 2500-repo findings for HARNESS.md generalize to CLAUDE.md and other agent config files
 - Users of harness-kit are comfortable with git clone / copy-paste workflow
 
 ## Open Questions
@@ -116,6 +116,6 @@ All requirements trace to these research files in `research/`:
 | Research File | Key Findings Used |
 |---|---|
 | research-05-fowler-harness-framework.md | Guides/Sensors taxonomy, Harnessability concept |
-| research-06-2026-agents-md-context.md | GitHub 2500-repo AGENTS.md findings, 40% context ceiling, 60-line recommendation, dumb zone, sub-agent firewall |
+| research-06-2026-harness-md-context.md | GitHub 2500-repo HARNESS.md findings, 40% context ceiling, 60-line recommendation, dumb zone, sub-agent firewall |
 | research-07-2026-production-cases.md | Datadog verification pyramid, Harvey evaluator-optimizer results, Escape.tech autonomy grading, Alex Lavaee 4-pillar framework |
 | research-01 through 04 | Original harness-kit methodology (error-driven writing, deterministic > probabilistic, knowledge base patterns) |

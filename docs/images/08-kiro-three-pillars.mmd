@@ -1,0 +1,34 @@
+graph TD
+    subgraph "Pillar 1 — Steering（知识层）"
+        direction TB
+        S1["always 模式<br/>product.md / tech.md / structure.md<br/>每次交互都加载"]
+        S2["fileMatch 模式<br/>匹配特定文件路径时加载<br/>如 src/api/**"]
+        S3["auto 模式<br/>Kiro 判断相关时自动加载<br/>如 api-design, testing-patterns"]
+        S4["manual 模式<br/>用户手动输入 #filename 加载<br/>如 #debugging-guide"]
+    end
+
+    subgraph "Pillar 2 — Specs（结构层）"
+        direction TB
+        SP1["Feature Spec<br/>requirements → design → tasks<br/>不能跳过阶段"]
+        SP2["Bugfix Spec<br/>current vs expected 分析<br/>系统化排查"]
+    end
+
+    subgraph "Pillar 3 — Hooks（自动化层）"
+        direction TB
+        H1["on-save-lint<br/>保存时自动 lint"]
+        H2["after-task-test<br/>完成任务后自动测试"]
+    end
+
+    A["HARNESS.md<br/>（自动检测并加载）"] --> S1
+    A --> SP1
+    A --> H1
+
+    style A fill:#e8eaf6
+    style S1 fill:#e1f5fe
+    style S2 fill:#e1f5fe
+    style S3 fill:#e1f5fe
+    style S4 fill:#e1f5fe
+    style SP1 fill:#fff3e0
+    style SP2 fill:#fff3e0
+    style H1 fill:#e8f5e9
+    style H2 fill:#e8f5e9

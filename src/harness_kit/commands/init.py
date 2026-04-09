@@ -12,7 +12,7 @@ console = Console()
 # --- Template content -----------------------------------------------------------
 
 AGENTS_MD_STANDARD = """\
-# AGENTS.md
+# HARNESS.md
 
 {project_description}
 
@@ -63,7 +63,7 @@ After modifying code, run in this order:
 CLAUDE_MD_TEMPLATE = """\
 # CLAUDE.md
 
-@AGENTS.md
+@HARNESS.md
 
 ## Claude Code Configuration
 
@@ -312,8 +312,8 @@ def run_init(
         _write_file(path, content, skip_existing=skip_existing)
 
     # --- Layer 1: Universal (always) ---
-    write(target_path / "AGENTS.md", AGENTS_MD_STANDARD.format(**preset))
-    generated_files.append("AGENTS.md")
+    write(target_path / "HARNESS.md", AGENTS_MD_STANDARD.format(**preset))
+    generated_files.append("HARNESS.md")
 
     # --- Layer 2: Platform adapters ---
     if use_claude:
@@ -376,9 +376,9 @@ def run_init(
     console.print(
         Panel.fit(
             "[bold]Next steps:[/bold]\n"
-            "1. Edit AGENTS.md — replace placeholders with your project's real info\n"
+            "1. Edit HARNESS.md — replace placeholders with your project's real info\n"
             "2. Start using your AI tool — observe where the agent makes mistakes\n"
-            "3. Add one line to AGENTS.md per mistake — this is error-driven writing\n"
+            "3. Add one line to HARNESS.md per mistake — this is error-driven writing\n"
             "4. Run [bold]harness-kit score[/bold] periodically to track your maturity",
             border_style="green",
         )

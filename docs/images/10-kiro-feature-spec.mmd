@@ -1,0 +1,21 @@
+graph TD
+    A["描述功能需求"] --> B["Phase 1: Requirements<br/>生成 requirements.md"]
+    B --> C{"审查需求"}
+    C -->|"需要调整"| B
+    C -->|"通过"| D["Phase 2: Design<br/>生成 design.md"]
+    D --> E{"审查设计"}
+    E -->|"需要调整"| D
+    E -->|"通过"| F["Phase 3: Tasks<br/>生成 tasks.md"]
+    F --> G{"审查任务分解"}
+    G -->|"需要调整"| F
+    G -->|"通过"| H["逐个执行任务"]
+    H --> I["after-task-test Hook<br/>自动验证"]
+    I --> J{"全部完成？"}
+    J -->|"否"| H
+    J -->|"是"| K["功能完成 ✓"]
+
+    style A fill:#e8eaf6
+    style K fill:#c8e6c9
+    style B fill:#fff3e0
+    style D fill:#fff3e0
+    style F fill:#fff3e0

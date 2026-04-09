@@ -1,0 +1,31 @@
+graph TD
+    subgraph "🌅 早上"
+        A["检查 harness-kit scan 结果"] --> B["审查隔夜代理工作"]
+        B --> C["规划今日工作"]
+    end
+
+    subgraph "💻 功能开发"
+        C --> D["Kiro: 创建 Feature Spec"]
+        D --> E["审查 + 优化 Spec"]
+        E --> F["Claude Code: 实现"]
+        F --> G["Hooks 自动验证"]
+        G --> H{"需要更多功能？"}
+        H -->|"是"| D
+    end
+
+    subgraph "🐛 Bug 修复"
+        H -->|"收到 Bug"| I{"Bug 复杂度"}
+        I -->|"简单"| J["Claude Code + debugging Skill<br/>快速定位修复"]
+        I -->|"复杂"| K["Kiro Bugfix Spec<br/>系统化分析"]
+        J --> L["验证修复"]
+        K --> L
+    end
+
+    subgraph "🌙 收尾"
+        L --> M["更新 HARNESS.md<br/>记录今天发现的新失败"]
+        M --> N["可选：启动后台代理<br/>entropy-cleanup 等"]
+    end
+
+    style A fill:#e1f5fe
+    style M fill:#fff9c4
+    style N fill:#e8f5e9

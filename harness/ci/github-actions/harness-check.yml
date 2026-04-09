@@ -11,7 +11,7 @@ name: Harness Health Check
 on:
   pull_request:
     paths:
-      - 'AGENTS.md'
+      - 'HARNESS.md'
       - 'CLAUDE.md'
       - '.claude/**'
       - '.kiro/**'
@@ -30,8 +30,8 @@ jobs:
           echo "Checking harness files..."
           MISSING=0
 
-          if [ ! -f "AGENTS.md" ] && [ ! -f "CLAUDE.md" ]; then
-            echo "::error::No AGENTS.md or CLAUDE.md found at project root"
+          if [ ! -f "HARNESS.md" ] && [ ! -f "CLAUDE.md" ]; then
+            echo "::error::No HARNESS.md or CLAUDE.md found at project root"
             MISSING=1
           fi
 
@@ -46,7 +46,7 @@ jobs:
           echo "Scanning for unfilled placeholders..."
           FOUND=0
 
-          for file in AGENTS.md CLAUDE.md; do
+          for file in HARNESS.md CLAUDE.md; do
             if [ -f "$file" ]; then
               if grep -qE '\[framework\]|\[React/Vue|\[Node.js/Python' "$file"; then
                 echo "::warning file=$file::Contains unfilled template placeholders"
@@ -74,7 +74,7 @@ jobs:
 
       - name: Check rule file sizes
         run: |
-          for file in AGENTS.md CLAUDE.md; do
+          for file in HARNESS.md CLAUDE.md; do
             if [ -f "$file" ]; then
               LINES=$(wc -l < "$file")
               if [ "$LINES" -gt 200 ]; then

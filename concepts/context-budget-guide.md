@@ -8,7 +8,7 @@
 ## When to Use
 
 - Your agent's output quality is declining mid-session
-- You are designing AGENTS.md / CLAUDE.md and wondering how long it should be
+- You are designing HARNESS.md / CLAUDE.md and wondering how long it should be
 - You are deciding whether to add more MCP tools or context files
 - You are setting up sub-agent architectures
 
@@ -55,7 +55,7 @@ Context Utilization:
 
 | Symptom | Likely Cause |
 |---|---|
-| Agent ignores rules from AGENTS.md | Rules pushed out of attention by conversation length |
+| Agent ignores rules from HARNESS.md | Rules pushed out of attention by conversation length |
 | Same edit repeated 3+ times | Context too full to track what was already tried |
 | Confidently wrong about file contents | "Lost in the middle" effect -- middle content gets least attention |
 | Quality decline after 30+ minutes | Accumulated tool results flooding context |
@@ -66,7 +66,7 @@ Context Utilization:
 
 ## Keeping Context Lean
 
-### 1. AGENTS.md / CLAUDE.md Length
+### 1. HARNESS.md / CLAUDE.md Length
 
 HumanLayer recommends under 60 lines. Augment Code says start under 150; 371 is the absolute upper bound. If over 150 lines, split into subdirectory-scoped files or knowledge-base docs.
 
@@ -94,7 +94,7 @@ From Anthropic's context engineering framework:
 
 > Agents incrementally discover relevant context through exploration rather than receiving everything upfront.
 
-**Implementation**: Maintain lightweight identifiers (file paths, module names) in AGENTS.md. Let the agent read full files on demand rather than pre-loading everything into the prompt.
+**Implementation**: Maintain lightweight identifiers (file paths, module names) in HARNESS.md. Let the agent read full files on demand rather than pre-loading everything into the prompt.
 
 ---
 
@@ -134,7 +134,7 @@ From Anthropic: when approaching context limits, summarize while preserving arch
 
 | Concept | Relevant Templates |
 |---|---|
-| AGENTS.md structure | `harness/universal/agents-md/standard.md` (concise structure) |
+| HARNESS.md structure | `harness/universal/harness-md/standard.md` (concise structure) |
 | Knowledge base (on-demand context) | `harness/universal/knowledge-base/` |
 | Verification output filtering | `harness/claude-code/hooks/stop/require-tests.sh` (parse for errors only) |
 | Context-efficient skills | `harness/claude-code/skills/` (loaded on demand, not always) |
@@ -143,7 +143,7 @@ From Anthropic: when approaching context limits, summarize while preserving arch
 
 ## Source
 
-- HumanLayer, "Skill Issue: Harness Engineering for Coding Agents" (40% ceiling, dumb zone, sub-agents) -- see `research/research-06-2026-agents-md-context.md`
-- Anthropic, "Effective context engineering for AI agents" (context rot, progressive disclosure, compaction) -- see `research/research-06-2026-agents-md-context.md`
+- HumanLayer, "Skill Issue: Harness Engineering for Coding Agents" (40% ceiling, dumb zone, sub-agents) -- see `research/research-06-2026-harness-md-context.md`
+- Anthropic, "Effective context engineering for AI agents" (context rot, progressive disclosure, compaction) -- see `research/research-06-2026-harness-md-context.md`
 - Alex Lavaee, "How to Harness Coding Agents with the Right Infrastructure" (Smart Zone / Dumb Zone, Horthy's data) -- see `research/research-07-2026-production-cases.md`
-- GitHub Blog, "How to write a great agents.md" (structure and length recommendations) -- see `research/research-06-2026-agents-md-context.md`
+- GitHub Blog, "How to write a great agents.md" (structure and length recommendations) -- see `research/research-06-2026-harness-md-context.md`

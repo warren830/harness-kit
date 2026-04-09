@@ -17,7 +17,7 @@ harness-kit is an open-source toolkit for Harness Engineering. It helps developm
 Reduce harness setup time from months to minutes by packaging best practices from OpenAI, Stripe, and LangChain into reusable templates and tools.
 
 ## Key Deliverables
-1. **Templates**: AGENTS.md, Hooks, Skills, Steering, Specs — ready to copy and customize
+1. **Templates**: HARNESS.md, Hooks, Skills, Steering, Specs — ready to copy and customize
 2. **Tools**: harness-init (scaffolding), harness-score (maturity assessment), entropy-scanner (drift detection)
 3. **Guides**: Methodology docs, platform-specific tutorials, anti-pattern warnings
 

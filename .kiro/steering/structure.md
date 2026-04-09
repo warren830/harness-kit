@@ -5,8 +5,8 @@ inclusion: always
 
 ```
 harness-kit/
-├── AGENTS.md                    # Universal rules (read by both Claude Code and Kiro)
-├── CLAUDE.md                    # Claude Code specific config (@imports AGENTS.md)
+├── HARNESS.md                    # Universal rules (read by both Claude Code and Kiro)
+├── CLAUDE.md                    # Claude Code specific config (@imports HARNESS.md)
 ├── .kiro/steering/              # Kiro steering files (this directory)
 │
 ├── concepts/                    # Theory & methodology (WHY and WHAT)
@@ -23,7 +23,7 @@ harness-kit/
 │
 ├── harness/                     # Copy-paste-ready templates (HOW and DO IT)
 │   ├── universal/               # Cross-platform templates
-│   │   ├── agents-md/           # AGENTS.md templates (starter/standard/advanced)
+│   │   ├── harness-md/           # HARNESS.md templates (starter/standard/advanced)
 │   │   ├── knowledge-base/      # Docs structure (ARCHITECTURE, QUALITY, etc.)
 │   │   ├── constraints/         # Architectural constraint templates
 │   │   └── entropy/             # Entropy management templates
@@ -49,8 +49,8 @@ harness-kit/
 
 ## Key Relationships
 - `concepts/` teaches WHY; `harness/` provides HOW — they cross-reference each other
-- `AGENTS.md` is imported by `CLAUDE.md` via `@AGENTS.md`
-- `AGENTS.md` is auto-detected by Kiro when placed at project root
+- `HARNESS.md` is imported by `CLAUDE.md` via `@HARNESS.md`
+- `HARNESS.md` is auto-detected by Kiro when placed at project root
 - `harness/universal/` content works with any AI coding tool
 - `harness/claude-code/` and `harness/kiro/` extend universal with platform capabilities
 - `tools/` reads templates from `harness/` via preset YAML files

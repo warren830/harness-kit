@@ -1,11 +1,11 @@
 ---
-name: "AGENTS.md Writing Guide"
-description: How to write effective AGENTS.md files using error-driven methodology and data-backed rules.
-when_to_use: Before writing or revising any AGENTS.md file.
-when_not_to_use: N/A — everyone writing AGENTS.md should read this.
+name: "HARNESS.md Writing Guide"
+description: How to write effective HARNESS.md files using error-driven methodology and data-backed rules.
+when_to_use: Before writing or revising any HARNESS.md file.
+when_not_to_use: N/A — everyone writing HARNESS.md should read this.
 ---
 
-# AGENTS.md Writing Guide
+# HARNESS.md Writing Guide
 
 ## The Error-Driven Loop
 
@@ -13,7 +13,7 @@ when_not_to_use: N/A — everyone writing AGENTS.md should read this.
 Observe agent fail → Diagnose root cause → Write ONE rule → Verify it works → Repeat
 ```
 
-Start with a near-empty AGENTS.md. Add rules only when the agent makes a real mistake. Speculative rules ("the agent might do X") add noise and reduce adherence.
+Start with a near-empty HARNESS.md. Add rules only when the agent makes a real mistake. Speculative rules ("the agent might do X") add noise and reduce adherence.
 
 For the full methodology, see [error-driven-methodology](error-driven-methodology).
 
@@ -65,9 +65,9 @@ function getUser(id: string): User { throw new Error(...) }
 
 Agents discover project structure by reading code. Architecture sections add tokens without improving performance. Point to `docs/ARCHITECTURE.md` instead.
 
-### 5. Never auto-generate your AGENTS.md
+### 5. Never auto-generate your HARNESS.md
 
-LLM-generated AGENTS.md files reduce task success by 0.5-2% and increase token cost by 20-23% (GitHub data). Write from observed failures, not AI output.
+LLM-generated HARNESS.md files reduce task success by 0.5-2% and increase token cost by 20-23% (GitHub data). Write from observed failures, not AI output.
 
 ## Diagnosis Table
 
@@ -81,7 +81,7 @@ LLM-generated AGENTS.md files reduce task success by 0.5-2% and increase token c
 
 ## Good Rule Checklist
 
-A rule belongs in AGENTS.md only if ALL of these are true:
+A rule belongs in HARNESS.md only if ALL of these are true:
 
 - [ ] Based on an observed failure (not a guess)
 - [ ] Specific — exact paths, commands, or patterns
@@ -98,7 +98,7 @@ A rule belongs in AGENTS.md only if ALL of these are true:
 | 80-150 | Large project | Consider splitting into sub-directory files |
 | 150+ | Too long | Agent adherence drops — prune or split |
 
-Research shows performance degrades at ~40% context utilization. A 200+ line AGENTS.md competes with your actual code for context space.
+Research shows performance degrades at ~40% context utilization. A 200+ line HARNESS.md competes with your actual code for context space.
 
 ## Anti-Patterns
 

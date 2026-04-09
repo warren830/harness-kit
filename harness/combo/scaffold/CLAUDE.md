@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-@AGENTS.md
+@HARNESS.md
 
 ## Claude Code Configuration
 

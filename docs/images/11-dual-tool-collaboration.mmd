@@ -1,0 +1,28 @@
+graph TD
+    subgraph "Phase 1 — Kiro 规划"
+        A["描述需求"] --> B["Kiro 生成 Spec"]
+        B --> C["requirements.md"]
+        C --> D["design.md"]
+        D --> E["tasks.md"]
+        E --> F{"审查通过？"}
+        F -->|"否"| B
+    end
+
+    subgraph "Phase 2 — 执行（任选工具）"
+        F -->|"是"| G{"选择执行工具"}
+        G -->|"Claude Code"| H1["Claude Code 执行任务"]
+        G -->|"Kiro"| H2["Kiro 执行任务"]
+        H1 --> I["Hooks 强制验证"]
+        H2 --> I
+    end
+
+    subgraph "Phase 3 — Claude Code 收尾"
+        I --> J["code-review Skill<br/>系统化代码审查"]
+        J --> K["完整验证<br/>lint → test → build"]
+        K --> L["交付 ✓"]
+    end
+
+    style A fill:#e1f5fe
+    style L fill:#c8e6c9
+    style H1 fill:#fff3e0
+    style H2 fill:#fff3e0

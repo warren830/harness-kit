@@ -1,0 +1,29 @@
+graph TD
+    A["让 AI 代理正常工作"] --> B["观察代理行为"]
+
+    B --> C{"代理犯错了吗？"}
+    C -->|"没有"| A
+    C -->|"是"| D["记录具体错误"]
+
+    D --> E{"诊断根因"}
+    E -->|"缺少信息"| F1["→ 在 HARNESS.md<br/>添加规则"]
+    E -->|"缺少约束"| F2["→ 添加 Hook<br/>强制执行"]
+    E -->|"缺少上下文"| F3["→ 添加 Skill/Steering<br/>提供知识"]
+    E -->|"缺少验证"| F4["→ 添加 Stop Hook<br/>验证门"]
+
+    F1 --> G["写最小化修复<br/>仅针对这个错误<br/>一条规则"]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+
+    G --> H["重放相同任务"]
+    H --> I{"错误消失了？"}
+    I -->|"是"| J["修复完成 ✓"]
+    I -->|"否"| E
+
+    J --> A
+
+    style A fill:#e8eaf6
+    style D fill:#ffcdd2
+    style J fill:#c8e6c9
+    style G fill:#fff9c4

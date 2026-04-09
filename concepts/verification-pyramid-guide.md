@@ -133,4 +133,4 @@ Match verification layer to development stage:
 ## Source
 
 - Datadog, "Closing the verification loop: Observability-driven harnesses for AI agents" -- see `research/research-07-2026-production-cases.md`
-- HumanLayer, "Skill Issue: Harness Engineering for Coding Agents" (context-efficient verification) -- see `research/research-06-2026-agents-md-context.md`
+- HumanLayer, "Skill Issue: Harness Engineering for Coding Agents" (context-efficient verification) -- see `research/research-06-2026-harness-md-context.md`

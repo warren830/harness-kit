@@ -1,0 +1,17 @@
+graph TB
+    A["你有一个项目"] --> B{"使用哪个 AI 编码工具？"}
+    B -->|"Claude Code"| C["Claude Code Harness"]
+    B -->|"Kiro"| D["Kiro Harness"]
+    B -->|"两个都用"| E["Dual-Tool 协作"]
+
+    C --> F["HARNESS.md<br/>+ CLAUDE.md<br/>+ Hooks + Skills + Rules"]
+    D --> G["HARNESS.md<br/>+ Steering<br/>+ Specs + Hooks"]
+    E --> H["共享 HARNESS.md<br/>+ 各自平台配置"]
+
+    F --> I["受约束的、可验证的<br/>AI 编码工作流"]
+    G --> I
+    H --> I
+
+    style A fill:#e1f5fe
+    style I fill:#c8e6c9
+    style B fill:#fff3e0

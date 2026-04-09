@@ -1,0 +1,20 @@
+graph LR
+    A["用户与 Kiro 交互"] --> B{"Kiro 检查 Steering 文件"}
+
+    B --> C["always 模式<br/>product.md<br/>tech.md<br/>structure.md"]
+    B --> D{"当前文件匹配<br/>fileMatchPattern？"}
+    B --> E{"Kiro 判断<br/>内容相关？"}
+    B --> F{"用户输入了<br/>#filename？"}
+
+    C --> G["加载到上下文"]
+    D -->|"匹配"| G
+    E -->|"相关"| G
+    F -->|"有"| G
+
+    D -->|"不匹配"| H["不加载"]
+    E -->|"不相关"| H
+    F -->|"没有"| H
+
+    style C fill:#c8e6c9
+    style G fill:#c8e6c9
+    style H fill:#ffcdd2

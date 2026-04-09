@@ -1,24 +1,24 @@
 ---
-name: "AGENTS.md Monorepo"
-description: Root-level AGENTS.md for monorepos, plus a package-level template. ~100 lines.
+name: "HARNESS.md Monorepo"
+description: Root-level HARNESS.md for monorepos, plus a package-level template. ~100 lines.
 when_to_use: Monorepos (Nx, Turborepo, Lerna, pnpm workspaces) with 3+ packages.
 when_not_to_use: Single-package repos (use standard.md).
 ---
 
 <!-- STRATEGY:
-     - Root AGENTS.md = project map + global rules (~60-80 lines)
-     - Each package gets its own AGENTS.md (~20-40 lines)
+     - Root HARNESS.md = project map + global rules (~60-80 lines)
+     - Each package gets its own HARNESS.md (~20-40 lines)
      - Agent reads root first, then the relevant package's file
-     OpenAI uses 88 AGENTS.md files across subsystems.
+     OpenAI uses 88 HARNESS.md files across subsystems.
      Replace [brackets], delete comments when done. -->
 
-# AGENTS.md (Root)
+# HARNESS.md (Root)
 
 [Project name]: monorepo with [N] packages for [purpose].
 
 ## Commands
 
-<!-- Global commands go here. Package-specific commands go in package AGENTS.md files. -->
+<!-- Global commands go here. Package-specific commands go in package HARNESS.md files. -->
 
 ```bash
 [pnpm install]                     # install all — run from root
@@ -33,7 +33,7 @@ when_not_to_use: Single-package repos (use standard.md).
 ## Boundaries
 
 Always:
-- Read the target package's AGENTS.md before working in that package
+- Read the target package's HARNESS.md before working in that package
 - Run only that package's tests, not the full monorepo suite
 - If you modify [shared/], also test all dependent packages
 
@@ -51,11 +51,11 @@ Never:
 
 ```
 [packages/
-  web/              — Next.js frontend        → packages/web/AGENTS.md
-  api/              — Express API server       → packages/api/AGENTS.md
-  shared/           — Shared types & utils     → packages/shared/AGENTS.md
-  mobile/           — React Native app         → packages/mobile/AGENTS.md
-  infra/            — Terraform infrastructure → packages/infra/AGENTS.md]
+  web/              — Next.js frontend        → packages/web/HARNESS.md
+  api/              — Express API server       → packages/api/HARNESS.md
+  shared/           — Shared types & utils     → packages/shared/HARNESS.md
+  mobile/           — React Native app         → packages/mobile/HARNESS.md
+  infra/            — Terraform infrastructure → packages/infra/HARNESS.md]
 ```
 
 ## Dependency Graph
@@ -74,7 +74,7 @@ Cross-package rules:
 
 ## Pitfalls
 
-<!-- Global monorepo pitfalls only. Package-specific ones go in package AGENTS.md.
+<!-- Global monorepo pitfalls only. Package-specific ones go in package HARNESS.md.
 
      Example entries (replace with real observations):
      - Use `pnpm --filter web dev`, NOT `cd packages/web && pnpm dev`
@@ -96,9 +96,9 @@ If you modified [shared/], also run:
 
 ---
 
-# Package-Level AGENTS.md Template
+# Package-Level HARNESS.md Template
 
-<!-- Copy this to each package directory as packages/<pkg>/AGENTS.md -->
+<!-- Copy this to each package directory as packages/<pkg>/HARNESS.md -->
 
 ## [Package Name]
 

@@ -1,16 +1,16 @@
 ---
-name: "AGENTS.md Standard"
+name: "HARNESS.md Standard"
 description: For team projects with established conventions. ~80 lines.
 when_to_use: Multi-contributor projects with CI, code review, and shared conventions.
 when_not_to_use: Solo projects (use starter.md) or monorepos with 3+ packages (use monorepo.md).
 ---
 
-<!-- Copy to your project root as AGENTS.md.
+<!-- Copy to your project root as HARNESS.md.
      Replace ALL [brackets] with real values. Delete unused sections.
      The "Pitfalls" section starts empty — grow it from observed failures only.
      Target: ~60-80 lines after customization. -->
 
-# AGENTS.md
+# HARNESS.md
 
 [Project name]: [One sentence description].
 

@@ -4,8 +4,8 @@ level: 2
 
 files:
   # Layer 1: Universal
-  - target: AGENTS.md
-    template: harness/universal/agents-md/standard
+  - target: HARNESS.md
+    template: harness/universal/harness-md/standard
 
   # Layer 2: Claude Code adapter
   - target: CLAUDE.md

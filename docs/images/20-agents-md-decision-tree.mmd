@@ -1,0 +1,13 @@
+graph TD
+    A["代理犯了一个错误"] --> B{"这个错误之前发生过吗？"}
+    B -->|"是"| C["现有规则不够清晰<br/>→ 改进现有规则"]
+    B -->|"否"| D{"这是项目特有的问题吗？"}
+    D -->|"是"| E["→ 添加到 HARNESS.md"]
+    D -->|"否"| F{"这是通用编程知识吗？"}
+    F -->|"是"| G["→ 不添加<br/>（模型已经知道）"]
+    F -->|"否"| H["→ 添加到 HARNESS.md<br/>并标注具体例子"]
+
+    style E fill:#c8e6c9
+    style H fill:#c8e6c9
+    style G fill:#ffcdd2
+    style C fill:#fff3e0

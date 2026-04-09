@@ -1,16 +1,16 @@
 ---
-name: "AGENTS.md Advanced"
+name: "HARNESS.md Advanced"
 description: For enterprise, high-risk, or compliance-sensitive projects. ~150 lines.
 when_to_use: Projects requiring audit trails, strict boundaries, role-based agents, or regulatory compliance.
 when_not_to_use: Early-stage projects or small teams (use standard.md) — this level of constraint adds overhead.
 ---
 
-<!-- Copy to your project root as AGENTS.md.
+<!-- Copy to your project root as HARNESS.md.
      Replace ALL [brackets]. Delete agent roles you don't use.
      This template enforces role-based boundaries — each agent type
      has explicit scope. Target: ~120-150 lines after customization. -->
 
-# AGENTS.md
+# HARNESS.md
 
 [Project name]: [One sentence description].
 

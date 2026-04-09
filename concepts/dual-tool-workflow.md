@@ -13,16 +13,16 @@ Not always — both can do both. But their strengths align with this division:
 - **Kiro** excels at structured planning (Specs), context-aware guidance (auto-steering), and requirements-driven development
 - **Claude Code** excels at deterministic enforcement (Hooks), deep expertise (Skills), multi-file operations (subagents), and long-running tasks
 
-## The Shared Bridge: AGENTS.md
+## The Shared Bridge: HARNESS.md
 
-Both tools read the same AGENTS.md:
+Both tools read the same HARNESS.md:
 
 ```
-AGENTS.md ──→ Kiro (auto-detected)
+HARNESS.md ──→ Kiro (auto-detected)
           └──→ Claude Code (via CLAUDE.md @import)
 ```
 
-When you add a line to AGENTS.md based on an observed failure, both tools benefit immediately.
+When you add a line to HARNESS.md based on an observed failure, both tools benefit immediately.
 
 ## Recommended Workflow by Task Type
 
@@ -112,13 +112,13 @@ Bug reports:
   └── Complex bugs → Kiro Bugfix Spec → systematic analysis
 
 End of day:
-  ├── Update AGENTS.md with any new observed failures
+  ├── Update HARNESS.md with any new observed failures
   └── Kick off background agents if applicable (Claude Code)
 ```
 
 ## What NOT to Do
 
-- **Don't duplicate rules** — AGENTS.md is the single source; don't copy content into both CLAUDE.md and .kiro/steering/
+- **Don't duplicate rules** — HARNESS.md is the single source; don't copy content into both CLAUDE.md and .kiro/steering/
 - **Don't use Kiro Specs for trivial changes** — one-line fixes don't need requirements → design → tasks
 - **Don't ignore the Stop hook** — if Claude Code can't stop because tests fail, fix the tests, don't disable the hook
 - **Don't context-switch constantly** — pick one tool per task, don't switch mid-task
@@ -131,4 +131,4 @@ Copy the ready-to-use dual-tool scaffold:
 cp -r harness-kit/harness/combo/scaffold/* ~/my-project/
 ```
 
-This gives you: AGENTS.md + CLAUDE.md + .kiro/steering/ — the minimum viable dual-tool setup.
+This gives you: HARNESS.md + CLAUDE.md + .kiro/steering/ — the minimum viable dual-tool setup.

@@ -9,7 +9,7 @@
 
 - You are deciding which tasks to delegate fully vs which need human review
 - You want a repeatable framework for expanding agent autonomy over time
-- You are setting up permission boundaries in AGENTS.md or hooks
+- You are setting up permission boundaries in HARNESS.md or hooks
 
 ## When NOT to Use
 
@@ -70,8 +70,8 @@ Each tier requires different harness controls:
 
 | Tier | Guide Controls | Sensor Controls |
 |---|---|---|
-| Fully Autonomous | AGENTS.md conventions | Auto-lint, auto-format, CI pipeline |
-| Light Review | AGENTS.md + relevant skills | Tests + lint + brief human skim |
+| Fully Autonomous | HARNESS.md conventions | Auto-lint, auto-format, CI pipeline |
+| Light Review | HARNESS.md + relevant skills | Tests + lint + brief human skim |
 | Full Review | Architecture constraints, design doc | Full test suite + human code review |
 | Human-Led | Step-by-step instructions | Human verifies each step |
 
@@ -127,7 +127,7 @@ Without sufficient backpressure (tests, lint, type checks), autonomous agents ac
 If your agent handles Light Review tasks without issues for a month, promote them. Unnecessary human review is wasted engineering time.
 
 ### One-size-fits-all permissions
-Different parts of the codebase have different risk profiles. `src/utils/` may be Fully Autonomous while `src/auth/` stays Human-Led. Use subdirectory-scoped AGENTS.md files or path-restriction hooks.
+Different parts of the codebase have different risk profiles. `src/utils/` may be Fully Autonomous while `src/auth/` stays Human-Led. Use subdirectory-scoped HARNESS.md files or path-restriction hooks.
 
 ---
 
@@ -135,7 +135,7 @@ Different parts of the codebase have different risk profiles. `src/utils/` may b
 
 | Concept | Relevant Templates |
 |---|---|
-| Permission boundaries | `harness/universal/agents-md/standard.md` (three-tier section) |
+| Permission boundaries | `harness/universal/harness-md/standard.md` (three-tier section) |
 | Path restrictions | `harness/claude-code/hooks/pre-tool-use/restrict-paths.sh` |
 | Destructive command blocking | `harness/claude-code/hooks/pre-tool-use/block-destructive.sh` |
 | Verification gates | `harness/claude-code/hooks/stop/require-tests.sh`, `require-lint.sh` |
@@ -146,4 +146,4 @@ Different parts of the codebase have different risk profiles. `src/utils/` may b
 
 - Escape.tech, "Everything I Learned About Harness Engineering and AI Factories in San Francisco" (April 2026) -- see `research/research-07-2026-production-cases.md`
 - Alex Lavaee, "How to Harness Coding Agents with the Right Infrastructure" (Huntley's backpressure principle) -- see `research/research-07-2026-production-cases.md`
-- GitHub Blog, "How to write a great agents.md" (three-tier permissions) -- see `research/research-06-2026-agents-md-context.md`
+- GitHub Blog, "How to write a great agents.md" (three-tier permissions) -- see `research/research-06-2026-harness-md-context.md`

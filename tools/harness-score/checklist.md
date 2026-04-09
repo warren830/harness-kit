@@ -13,7 +13,7 @@
 
 ## Level 1: Rules (0-10)
 
-- [ ] Has AGENTS.md, CLAUDE.md, or equivalent rule file at project root
+- [ ] Has HARNESS.md, CLAUDE.md, or equivalent rule file at project root
 - [ ] Rule file contains project-specific content (not empty/placeholder-only)
 
 Score: ___ / 10
@@ -29,7 +29,7 @@ Score: ___ / 10
 ## Level 3: Verification (0-10)
 
 - [ ] Test suite exists (tests/, __tests__/, spec/ directory with actual tests)
-- [ ] Test command documented in AGENTS.md / CLAUDE.md
+- [ ] Test command documented in HARNESS.md / CLAUDE.md
 
 Score: ___ / 10
 
@@ -84,5 +84,5 @@ Score: ___ / 10
 
 Look at the lowest-scoring levels. Prioritize:
 1. Level 3 (Verification) — biggest single-item impact is a Stop hook
-2. Level 1 (Rules) — if you don't have AGENTS.md, nothing else matters
+2. Level 1 (Rules) — if you don't have HARNESS.md, nothing else matters
 3. Level 4 (Feedback) — error-driven rules compound over time

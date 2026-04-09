@@ -1,0 +1,19 @@
+graph TD
+    A["第 1 周<br/>Must Have"] --> B["Stop: require-tests.sh<br/>最高杠杆 — 强制验证"]
+
+    C["第 2 周<br/>Should Have"] --> D["PreToolUse: block-destructive.sh<br/>防止危险操作"]
+    C --> E["PostToolUse: auto-lint.sh<br/>自动维护质量"]
+
+    F["第 3 周<br/>Nice to Have"] --> G["PreToolUse: restrict-paths.sh<br/>保护敏感目录"]
+    F --> H["PostToolUse: auto-format.sh<br/>统一格式"]
+    F --> I["Stop: require-lint.sh<br/>质量门"]
+
+    style A fill:#ffcdd2
+    style B fill:#ffcdd2
+    style C fill:#fff3e0
+    style D fill:#fff3e0
+    style E fill:#fff3e0
+    style F fill:#e8f5e9
+    style G fill:#e8f5e9
+    style H fill:#e8f5e9
+    style I fill:#e8f5e9

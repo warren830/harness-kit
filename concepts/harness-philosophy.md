@@ -68,7 +68,7 @@ Mitchell Hashimoto's original definition:
 This is reactive, not proactive. You don't predict what might go wrong. You observe what does go wrong, then fix the environment.
 
 **Why reactive works better than proactive**:
-- ETH Zurich study: LLM-generated AGENTS.md files **hurt** performance by 20%+
+- ETH Zurich study: LLM-generated HARNESS.md files **hurt** performance by 20%+
 - Pre-filled "best practice" rules add noise that drowns out signal
 - You can't predict failure modes until you see them in your specific project
 - Each project's failure patterns are unique
@@ -125,12 +125,12 @@ Boeckeler's warning:
 
 | Deterministic (guaranteed) | Probabilistic (influenced) |
 |---|---|
-| Hooks (shell scripts run every time) | AGENTS.md rules (agent usually follows) |
+| Hooks (shell scripts run every time) | HARNESS.md rules (agent usually follows) |
 | Linter rules (fail = block) | Skills (agent usually loads when relevant) |
 | Type checker (compile-time enforcement) | Architecture guidance (agent usually respects) |
 | Pre-commit hooks (mandatory gate) | "Don't modify src/core/" (agent usually obeys) |
 
-**Design principle**: For critical rules, use deterministic enforcement (hooks, linters). For guidelines, use probabilistic influence (AGENTS.md, skills). Never rely solely on AGENTS.md for rules that must never be violated.
+**Design principle**: For critical rules, use deterministic enforcement (hooks, linters). For guidelines, use probabilistic influence (HARNESS.md, skills). Never rely solely on HARNESS.md for rules that must never be violated.
 
 The harness engineering stack from most to least deterministic:
 
@@ -140,13 +140,13 @@ Type system              ← 100% enforced (compile time)
 Pre-commit hooks         ← 100% enforced (before commit)
 CI checks                ← 100% enforced (before merge)
 ──────────────────────── probability boundary ────────
-AGENTS.md rules          ← ~90% followed (soft influence)
+HARNESS.md rules          ← ~90% followed (soft influence)
 Skills context           ← ~85% applied when relevant
 Architecture guidance    ← ~80% respected
 General advice           ← ~50% impact (noise territory)
 ```
 
-**Rule of thumb**: If it must never be violated, make it a hook or linter. If it should usually be followed, put it in AGENTS.md.
+**Rule of thumb**: If it must never be violated, make it a hook or linter. If it should usually be followed, put it in HARNESS.md.
 
 ---
 
@@ -198,7 +198,7 @@ An engineer's value is no longer measured by how fast they write code. It's meas
 1. **Agent = Model + Harness** — The environment matters more than the model
 2. **Error-driven, not speculation-driven** — Write rules from observation, not imagination
 3. **Constraints enable autonomy** — More structure means better agent output
-4. **Deterministic over probabilistic** — Use hooks for must-have rules, AGENTS.md for should-have
+4. **Deterministic over probabilistic** — Use hooks for must-have rules, HARNESS.md for should-have
 5. **Table of contents, not encyclopedia** — Keep rule files short, point to deeper docs
 6. **Entropy is inevitable** — Budget time for harness maintenance
 7. **The model is commodity, the harness is moat** — Your competitive advantage is environment design

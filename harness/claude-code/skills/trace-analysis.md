@@ -61,7 +61,7 @@ Match the pattern to the right harness fix:
 |---------|----------|-------|
 | Missed requirements | Pre-completion checklist hook | `.claude/hooks/stop/` |
 | File thrashing | Loop detection hook | `.claude/hooks/post-tool-use/` |
-| Wrong command | AGENTS.md commands section | `AGENTS.md` |
+| Wrong command | HARNESS.md commands section | `HARNESS.md` |
 | Architecture violation | Path restriction hook or layer rules | `.claude/rules/` |
 | Incomplete verification | Stop hook (require-tests) | `.claude/hooks/stop/` |
 | Context loss | Knowledge base docs or steering files | `docs/` or `.kiro/steering/` |

@@ -6,9 +6,9 @@
 
 ## Anti-Pattern 1: AI Writing Its Own Rules
 
-**What**: Using an LLM to generate AGENTS.md or steering content.
+**What**: Using an LLM to generate HARNESS.md or steering content.
 
-**Evidence**: ETH Zurich study found LLM-generated AGENTS.md files **hurt performance by 20%+**, while human-written ones improved it by ~4%.
+**Evidence**: ETH Zurich study found LLM-generated HARNESS.md files **hurt performance by 20%+**, while human-written ones improved it by ~4%.
 
 **Why it fails**: The LLM generates generic best practices it already knows. This adds noise, drowning out the project-specific rules that actually matter.
 
@@ -18,16 +18,16 @@
 
 ## Anti-Pattern 2: The 500-Line Rule File
 
-**What**: Putting everything into one massive AGENTS.md or CLAUDE.md.
+**What**: Putting everything into one massive HARNESS.md or CLAUDE.md.
 
 **Evidence**: Claude Code documentation recommends < 200 lines. LangChain found 12 consolidated skills outperform 20 fragmented ones — but a single giant file is worse than either.
 
 **Why it fails**: Important rules get lost in noise. Agent adherence measurably drops as files grow.
 
 **Fix**:
-- AGENTS.md: ~100 lines max (table of contents, not encyclopedia)
-- Split into: AGENTS.md (core) + .claude/rules/ (path-specific) + .claude/skills/ (on-demand)
-- Or: AGENTS.md + .kiro/steering/ with different inclusion modes
+- HARNESS.md: ~100 lines max (table of contents, not encyclopedia)
+- Split into: HARNESS.md (core) + .claude/rules/ (path-specific) + .claude/skills/ (on-demand)
+- Or: HARNESS.md + .kiro/steering/ with different inclusion modes
 
 ---
 
@@ -39,7 +39,7 @@
 
 **Why it fails**: More loaded context = more noise = worse performance. The agent spends tokens processing irrelevant instructions.
 
-**Fix**: Start with AGENTS.md only. Add one tool/skill/hook at a time, when you observe a specific need.
+**Fix**: Start with HARNESS.md only. Add one tool/skill/hook at a time, when you observe a specific need.
 
 ---
 
@@ -61,7 +61,7 @@
 
 **Evidence**: Anthropic best practices: "Self-verification is the single highest-leverage thing you can do." Without enforcement, agents frequently skip verification.
 
-**Why it fails**: AGENTS.md verification instructions are probabilistic (~90% followed). That 10% miss rate compounds over many tasks.
+**Why it fails**: HARNESS.md verification instructions are probabilistic (~90% followed). That 10% miss rate compounds over many tasks.
 
 **Fix**: Use a Stop hook (Claude Code) or after-task-test hook (Kiro) to make verification mandatory and deterministic.
 
@@ -81,11 +81,11 @@
 
 ## Anti-Pattern 7: Duplicating Rules Across Tools
 
-**What**: Writing the same rules in AGENTS.md, CLAUDE.md, and .kiro/steering/.
+**What**: Writing the same rules in HARNESS.md, CLAUDE.md, and .kiro/steering/.
 
 **Why it fails**: When you update one, you forget the others. Now the tools get contradictory instructions. The agent doesn't know which to follow.
 
-**Fix**: AGENTS.md is the single source of truth. CLAUDE.md imports it with `@AGENTS.md`. Kiro auto-detects it. Platform files only add platform-specific config, never duplicate content.
+**Fix**: HARNESS.md is the single source of truth. CLAUDE.md imports it with `@HARNESS.md`. Kiro auto-detects it. Platform files only add platform-specific config, never duplicate content.
 
 ---
 
@@ -130,6 +130,6 @@
 | Infinite CI retry | Max 2 rounds, then escalate |
 | No verification gate | Stop hook / after-task hook |
 | Ignoring entropy | Monthly review + harness-kit scan |
-| Duplicating rules | AGENTS.md = single source of truth |
+| Duplicating rules | HARNESS.md = single source of truth |
 | Testing every time | Fast lint → medium test → full CI |
 | Speculative rules | Only write what you've observed |

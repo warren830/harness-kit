@@ -1,0 +1,37 @@
+graph TD
+    subgraph "Level 0 — None（0 分）"
+        L0["代理盲目运行<br/>没有任何指引"]
+    end
+
+    subgraph "Level 1 — Rules（10 分）"
+        L1["HARNESS.md 存在<br/>代理知道基本规则"]
+    end
+
+    subgraph "Level 2 — Constraints（20 分）"
+        L2["+ Linter / Type Checker / Hooks<br/>强制执行约束"]
+    end
+
+    subgraph "Level 3 — Verification（30 分）"
+        L3["+ 代理能跑测试并自检<br/>Stop Hook 验证门"]
+    end
+
+    subgraph "Level 4 — Feedback（40 分）"
+        L4["+ 错误消息带修复建议<br/>代理能自我纠正"]
+    end
+
+    subgraph "Level 5 — Context（50 分）"
+        L5["+ Skills / 渐进式知识<br/>按需加载上下文"]
+    end
+
+    subgraph "Level 6 — Isolation（60 分）"
+        L6["+ Worktree / Docker 隔离<br/>变更可安全回滚"]
+    end
+
+    subgraph "Level 7 — Autonomous（70 分）"
+        L7["+ 熵管理 + 多代理协调<br/>接近自主运行"]
+    end
+
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+
+    style L0 fill:#ffcdd2
+    style L7 fill:#c8e6c9

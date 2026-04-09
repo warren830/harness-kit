@@ -15,9 +15,9 @@ Birgitta Boeckeler (Thoughtworks) warns:
 ## The Gradual Approach
 
 ```
-Week 1:  AGENTS.md only                    ← 30 minutes
+Week 1:  HARNESS.md only                    ← 30 minutes
 Week 2:  + Stop hook (require-tests)       ← 1 hour
-Week 3:  + Grow AGENTS.md from failures    ← 5 min/day
+Week 3:  + Grow HARNESS.md from failures    ← 5 min/day
 Week 4:  + Knowledge base (ARCHITECTURE)   ← 2 hours
 Month 2: + Skills for common tasks         ← 4 hours
 Month 3: + Path-specific rules             ← 2 hours
@@ -26,7 +26,7 @@ Month 6: + Entropy management              ← ongoing
 
 **Do NOT** try to go from Level 0 to Level 7 in one sprint.
 
-## Step 1: Start with AGENTS.md (Week 1)
+## Step 1: Start with HARNESS.md (Week 1)
 
 ```bash
 harness-kit init ~/existing-project/ --tools both --level 1
@@ -60,10 +60,10 @@ If your project does NOT have tests:
 Start using AI agents for real work. Every time the agent makes a mistake:
 
 1. Note the mistake
-2. Add one line to AGENTS.md
+2. Add one line to HARNESS.md
 3. Verify the fix
 
-After 2-3 weeks, your AGENTS.md will have 10-20 lines of project-specific rules that dramatically improve agent behavior. These rules are worth more than any template because they're tailored to YOUR project's failure modes.
+After 2-3 weeks, your HARNESS.md will have 10-20 lines of project-specific rules that dramatically improve agent behavior. These rules are worth more than any template because they're tailored to YOUR project's failure modes.
 
 ## Step 4: Document What You Have (Week 4)
 
@@ -105,7 +105,7 @@ cp harness-kit/harness/kiro/steering/api-design.md .kiro/steering/
 For code modules rated "F" (no tests, fragile, nobody understands it):
 
 1. **Don't try to harness legacy modules** — add them to QUALITY.md as Grade F
-2. **Tell agents to avoid them** — add to AGENTS.md: "Do NOT modify src/legacy/ without approval"
+2. **Tell agents to avoid them** — add to HARNESS.md: "Do NOT modify src/legacy/ without approval"
 3. **Protect them with hooks** — add path to restrict-paths.sh
 4. **Gradually improve** — when you DO touch legacy code, add tests first
 
@@ -115,7 +115,7 @@ For code modules rated "F" (no tests, fragile, nobody understands it):
 
 "Let me set up the complete harness infrastructure before we start."
 
-**Fix**: AGENTS.md first. Everything else follows naturally from observed needs.
+**Fix**: HARNESS.md first. Everything else follows naturally from observed needs.
 
 ### Mistake 2: Generating rules from the codebase
 
@@ -131,7 +131,7 @@ For code modules rated "F" (no tests, fragile, nobody understands it):
 
 ### Mistake 4: Not updating the harness
 
-"We set up AGENTS.md three months ago, we're done."
+"We set up HARNESS.md three months ago, we're done."
 
 **Fix**: The harness is alive. It grows with the project. Schedule weekly 30-minute reviews.
 
@@ -139,9 +139,9 @@ For code modules rated "F" (no tests, fragile, nobody understands it):
 
 | Phase | Time | What | Validation |
 |-------|------|------|-----------|
-| Day 1 | 30 min | AGENTS.md + CLAUDE.md/.kiro/steering | `harness-kit score` shows Level 1 |
+| Day 1 | 30 min | HARNESS.md + CLAUDE.md/.kiro/steering | `harness-kit score` shows Level 1 |
 | Week 1 | 1 hour | Stop hook + block-destructive hook | `harness-kit score` shows Level 2+ |
-| Week 2-4 | 5 min/day | Grow AGENTS.md from failures | 10-20 project-specific rules |
+| Week 2-4 | 5 min/day | Grow HARNESS.md from failures | 10-20 project-specific rules |
 | Month 1 | 2 hours | ARCHITECTURE.md + QUALITY.md | `harness-kit score` shows Level 4 |
 | Month 2 | 4 hours | 2-3 Skills or auto-steering files | `harness-kit score` shows Level 5 |
 | Month 3+ | Ongoing | Entropy management + CI integration | `harness-kit score` shows Level 6+ |

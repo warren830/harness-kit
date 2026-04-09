@@ -1,24 +1,24 @@
 ---
-name: AGENTS.md Monorepo Template
-description: For monorepos with multiple packages/services. Root AGENTS.md acts as a map; each package has its own.
+name: HARNESS.md Monorepo Template
+description: For monorepos with multiple packages/services. Root HARNESS.md acts as a map; each package has its own.
 when_to_use: Monorepos (Nx, Turborepo, Lerna, pnpm workspaces) with 3+ packages.
 when_not_to_use: Single-package repos (use standard.md).
 ---
 
 <!-- =================================================================
-     AGENTS.md Monorepo Template — harness-kit
+     HARNESS.md Monorepo Template — harness-kit
 
      STRATEGY:
-     - Root AGENTS.md = project map (~50-80 lines)
-     - Each package gets its own AGENTS.md (~20-50 lines)
+     - Root HARNESS.md = project map (~50-80 lines)
+     - Each package gets its own HARNESS.md (~20-50 lines)
      - Agent reads root first, then the relevant package's file
 
-     OpenAI uses 88 AGENTS.md files across subsystems.
-     Kiro auto-detects AGENTS.md at any directory level.
+     OpenAI uses 88 HARNESS.md files across subsystems.
+     Kiro auto-detects HARNESS.md at any directory level.
      Claude Code supports nested CLAUDE.md (child overrides parent).
      ================================================================= -->
 
-# AGENTS.md (Root)
+# HARNESS.md (Root)
 
 [Project name]: A monorepo containing [N] packages for [purpose].
 
@@ -33,7 +33,7 @@ when_not_to_use: Single-package repos (use standard.md).
   infra/            — CDK/Terraform infrastructure]
 ```
 
-Each package has its own AGENTS.md with package-specific commands and conventions.
+Each package has its own HARNESS.md with package-specific commands and conventions.
 
 ## Global Commands
 
@@ -65,13 +65,13 @@ Each package has its own AGENTS.md with package-specific commands and convention
 ## Working on a Specific Package
 
 When working on a specific package:
-1. Read that package's AGENTS.md first
+1. Read that package's HARNESS.md first
 2. Run that package's tests, not the entire monorepo
 3. Stay within that package's directory unless modifying shared types
 
 ## Agent Pitfalls (Error-Driven)
 
-<!-- Add global monorepo pitfalls here. Package-specific ones go in package AGENTS.md. -->
+<!-- Add global monorepo pitfalls here. Package-specific ones go in package HARNESS.md. -->
 <!-- Example:
      - Use `pnpm --filter web dev` not `cd packages/web && pnpm dev`
      - Do NOT add dependencies to root package.json
@@ -89,13 +89,13 @@ After modifying code in package `<pkg>`:
 ---
 
 <!-- =================================================================
-     Below: Template for a PACKAGE-LEVEL AGENTS.md
-     Copy this into each package directory as packages/<pkg>/AGENTS.md
+     Below: Template for a PACKAGE-LEVEL HARNESS.md
+     Copy this into each package directory as packages/<pkg>/HARNESS.md
      ================================================================= -->
 
-# Template: Package-Level AGENTS.md
+# Template: Package-Level HARNESS.md
 
-<!-- Copy this to packages/<pkg>/AGENTS.md and customize -->
+<!-- Copy this to packages/<pkg>/HARNESS.md and customize -->
 
 ## [Package Name]
 

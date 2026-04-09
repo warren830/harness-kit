@@ -22,7 +22,7 @@ def run_scan(target: str) -> None:
     issues: list[tuple[str, str, str]] = []  # (severity, file, description)
 
     # Check 1: Rule file size (>200 lines = noise risk)
-    for rule_file in ["AGENTS.md", "CLAUDE.md"]:
+    for rule_file in ["HARNESS.md", "CLAUDE.md"]:
         path = target_path / rule_file
         if path.exists():
             lines = len(path.read_text().splitlines())
@@ -34,7 +34,7 @@ def run_scan(target: str) -> None:
                 ))
 
     # Check 2: Placeholder content still present
-    for rule_file in ["AGENTS.md", "CLAUDE.md"]:
+    for rule_file in ["HARNESS.md", "CLAUDE.md"]:
         path = target_path / rule_file
         if path.exists():
             content = path.read_text()
@@ -71,8 +71,8 @@ def run_scan(target: str) -> None:
                     "Hook script is not executable. Run: chmod +x " + str(hook_file),
                 ))
 
-    # Check 5: AGENTS.md references commands that don't exist in package.json/pyproject.toml
-    agents_path = target_path / "AGENTS.md"
+    # Check 5: HARNESS.md references commands that don't exist in package.json/pyproject.toml
+    agents_path = target_path / "HARNESS.md"
     if agents_path.exists():
         content = agents_path.read_text()
         pkg_json = target_path / "package.json"
@@ -81,13 +81,13 @@ def run_scan(target: str) -> None:
             if "npm test" in content and '"test"' not in pkg_content:
                 issues.append((
                     "ERROR",
-                    "AGENTS.md",
+                    "HARNESS.md",
                     'References "npm test" but no "test" script found in package.json.',
                 ))
             if "npm run lint" in content and '"lint"' not in pkg_content:
                 issues.append((
                     "ERROR",
-                    "AGENTS.md",
+                    "HARNESS.md",
                     'References "npm run lint" but no "lint" script found in package.json.',
                 ))
 

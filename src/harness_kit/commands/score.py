@@ -16,8 +16,8 @@ CHECKS: list[dict[str, object]] = [
         "level": 1,
         "name": "Rules",
         "checks": [
-            ("AGENTS.md or equivalent", lambda p: _has_any(p, ["AGENTS.md", "CLAUDE.md", ".cursorrules"])),
-            ("Project-specific content (not empty template)", lambda p: _file_over_lines(p / "AGENTS.md", 5) or _file_over_lines(p / "CLAUDE.md", 5)),
+            ("HARNESS.md or equivalent", lambda p: _has_any(p, ["HARNESS.md", "CLAUDE.md"])),
+            ("Project-specific content (not empty template)", lambda p: _file_over_lines(p / "HARNESS.md", 5) or _file_over_lines(p / "CLAUDE.md", 5)),
         ],
     },
     # Level 2: Constraints
@@ -36,7 +36,7 @@ CHECKS: list[dict[str, object]] = [
         "name": "Verification",
         "checks": [
             ("Test suite exists", lambda p: _has_any_dir(p, ["__tests__", "tests", "test", "spec"])),
-            ("Test command documented", lambda p: _file_contains(p / "AGENTS.md", "test") or _file_contains(p / "CLAUDE.md", "test")),
+            ("Test command documented", lambda p: _file_contains(p / "HARNESS.md", "test") or _file_contains(p / "CLAUDE.md", "test")),
         ],
     },
     # Level 4: Feedback loops
@@ -45,7 +45,7 @@ CHECKS: list[dict[str, object]] = [
         "name": "Feedback",
         "checks": [
             ("Architecture doc exists", lambda p: _has_any(p, ["docs/ARCHITECTURE.md", "ARCHITECTURE.md"])),
-            ("Error-driven rules (Agent Pitfalls section)", lambda p: _file_contains(p / "AGENTS.md", "Pitfall") or _file_contains(p / "AGENTS.md", "pitfall") or _file_contains(p / "AGENTS.md", "Do NOT")),
+            ("Error-driven rules (Agent Pitfalls section)", lambda p: _file_contains(p / "HARNESS.md", "Pitfall") or _file_contains(p / "HARNESS.md", "pitfall") or _file_contains(p / "HARNESS.md", "Do NOT")),
         ],
     },
     # Level 5: Context management
@@ -72,7 +72,7 @@ CHECKS: list[dict[str, object]] = [
         "level": 7,
         "name": "Autonomous",
         "checks": [
-            ("Entropy management docs", lambda p: _file_contains(p / "AGENTS.md", "entropy") or _has_any(p, ["docs/QUALITY.md"])),
+            ("Entropy management docs", lambda p: _file_contains(p / "HARNESS.md", "entropy") or _has_any(p, ["docs/QUALITY.md"])),
             ("CI harness checks", lambda p: _has_any(p, [".github/workflows"])),
             ("Kiro Specs", lambda p: (p / ".kiro" / "specs").is_dir()),
         ],

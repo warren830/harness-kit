@@ -38,7 +38,7 @@ Every harness control is classified along two dimensions:
 |---|---|---|
 | Timing | Before the agent acts | After the agent acts |
 | Purpose | Steer toward quality on the first attempt | Observe and enable self-correction |
-| Examples | AGENTS.md rules, Skills, type definitions | Test results, linter output, build failures |
+| Examples | HARNESS.md rules, Skills, type definitions | Test results, linter output, build failures |
 
 **Fowler's key insight**: "Feedforward-only systems encode rules without verification; feedback-only systems repeat mistakes. Both are necessary."
 
@@ -49,7 +49,7 @@ Every harness control is classified along two dimensions:
 | Speed | Milliseconds to seconds | Seconds to minutes |
 | Reliability | Deterministic, ~100% | Probabilistic, ~90% |
 | Cost | Low (CPU) | High (API calls) |
-| Examples | Linters, type checkers, tests | AI code review, AGENTS.md rules |
+| Examples | Linters, type checkers, tests | AI code review, HARNESS.md rules |
 
 ### The 2x2 Matrix
 
@@ -57,7 +57,7 @@ Every harness control is classified along two dimensions:
                     Computational              Reasoning
                     (deterministic)            (probabilistic)
               ┌─────────────────────────┬─────────────────────────┐
-   Guide      │ Linter configs          │ AGENTS.md rules         │
+   Guide      │ Linter configs          │ HARNESS.md rules         │
  (feedforward)│ Type definitions        │ Skills / steering docs  │
               │ Build configs           │ Architectural guidance  │
               │ Docker/worktree setup   │ Writing guides          │
@@ -78,7 +78,7 @@ All 70 harness-kit templates classified into the four quadrants:
 | Quadrant | Count | Examples |
 |---|---|---|
 | Guide (Computational) | 18 | `settings-hooks.json`, rules (`api-rules.md`, `test-rules.md`), skills (`api-design.md`, `security-audit.md`), environment scripts (`docker-compose.yml`, `worktree-setup.sh`) |
-| Guide (Reasoning) | 35 | AGENTS.md templates, knowledge-base docs, steering docs, specs templates, writing guides |
+| Guide (Reasoning) | 35 | HARNESS.md templates, knowledge-base docs, steering docs, specs templates, writing guides |
 | Sensor (Computational) | 13 | `block-destructive.sh`, `restrict-paths.sh`, `auto-lint.sh`, `require-tests.sh`, CI workflows |
 | Sensor (Reasoning) | 4 | `loop-detection.sh`, `pre-completion-checklist.sh`, `trace-analysis.md`, `weekly-review.md` |
 
@@ -135,7 +135,7 @@ When adding a new control to your harness, ask:
 | Quadrant | Relevant Templates |
 |---|---|
 | Guide (Computational) | `harness/claude-code/hooks/settings-hooks.json`, `harness/claude-code/rules/` |
-| Guide (Reasoning) | `harness/universal/agents-md/`, `harness/claude-code/skills/` |
+| Guide (Reasoning) | `harness/universal/harness-md/`, `harness/claude-code/skills/` |
 | Sensor (Computational) | `harness/claude-code/hooks/pre-tool-use/`, `harness/claude-code/hooks/stop/` |
 | Sensor (Reasoning) | `harness/claude-code/hooks/post-tool-use/loop-detection.sh`, `harness/claude-code/skills/trace-analysis.md` |
 

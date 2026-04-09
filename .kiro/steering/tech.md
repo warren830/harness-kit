@@ -16,7 +16,7 @@ inclusion: always
 - Tools are standalone Python scripts — no heavy frameworks
 - Dual-layer architecture: concepts/ (theory) → harness/ (execution templates)
 - Fowler's Guides/Sensors framework as classification system (see concepts/fowler-framework-guide.md)
-- AGENTS.md is the "constitution" — platform files are "implementation details"
+- HARNESS.md is the "constitution" — platform files are "implementation details"
 
 ## File Conventions
 - Concept guides: `concepts/<topic>-guide.md`

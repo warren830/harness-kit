@@ -36,18 +36,18 @@ grep -r "deprecated" src/                 # deprecated usage
 
 ### 3. Fix (one at a time)
 - One fix per commit — easy to revert if something breaks
-- Update AGENTS.md if the cleanup changes any documented behavior
+- Update HARNESS.md if the cleanup changes any documented behavior
 - Update ARCHITECTURE.md if module structure changed
 - Run full test suite after each fix
 
 ### 4. Prevent (reduce future entropy)
-- Add the failure pattern to AGENTS.md (error-driven writing)
+- Add the failure pattern to HARNESS.md (error-driven writing)
 - Add a linter rule if the pattern is mechanically detectable
 - Schedule regular cleanup (weekly 30-min review)
 
 ## Weekly Entropy Review Checklist
 
-- [ ] Does AGENTS.md still match reality? (commands, paths, conventions)
+- [ ] Does HARNESS.md still match reality? (commands, paths, conventions)
 - [ ] Do any docs reference files/functions that no longer exist?
 - [ ] Are there new TODO/FIXME comments without issue references?
 - [ ] Are all dependencies still used and up to date?

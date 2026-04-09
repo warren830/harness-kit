@@ -115,24 +115,24 @@ Set up via Command Palette → "Kiro: Open Kiro Hook UI".
 
 **Templates**: `harness/kiro/hooks/`
 
-## AGENTS.md Integration
+## HARNESS.md Integration
 
-Kiro auto-detects AGENTS.md at the project root. This means your universal rules are always available without duplication:
+Kiro auto-detects HARNESS.md at the project root. This means your universal rules are always available without duplication:
 
 ```
-AGENTS.md                    ← auto-detected, always loaded
+HARNESS.md                    ← auto-detected, always loaded
 .kiro/steering/product.md    ← Kiro-specific product context
 .kiro/steering/tech.md       ← Kiro-specific tech details
 .kiro/steering/structure.md  ← Kiro-specific structure notes
 ```
 
-**Don't duplicate AGENTS.md content in steering files.** Reference it instead.
+**Don't duplicate HARNESS.md content in steering files.** Reference it instead.
 
 ## Full Project Layout
 
 ```
 my-project/
-├── AGENTS.md                          ← Universal rules (auto-detected)
+├── HARNESS.md                          ← Universal rules (auto-detected)
 ├── .kiro/
 │   ├── steering/
 │   │   ├── product.md                 ← inclusion: always
@@ -160,9 +160,9 @@ my-project/
 
 | Week | Add | Impact |
 |------|-----|--------|
-| 1 | AGENTS.md + steering 三件套 | Kiro knows your project basics |
+| 1 | HARNESS.md + steering 三件套 | Kiro knows your project basics |
 | 2 | Auto-loading steering (api-design, testing) | Context-aware guidance |
 | 2 | Lint-on-save hook | Immediate quality feedback |
 | 3 | Feature Spec workflow for new features | Structured development |
 | 3 | Test-after-task hook | Verified execution |
-| 4+ | Grow AGENTS.md from observed failures | Harness improves every day |
+| 4+ | Grow HARNESS.md from observed failures | Harness improves every day |

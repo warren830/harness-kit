@@ -86,7 +86,7 @@ devpace 根据 CR 复杂度（S/M/L/XL）适配不同细节要求：
 
 harness-kit 现状：模板是 one-size-fits-all。
 
-建议：在 AGENTS.md 模板中引入复杂度分级概念。比如 standard.md 模板可以加入：
+建议：在 HARNESS.md 模板中引入复杂度分级概念。比如 standard.md 模板可以加入：
 ## Task Complexity Guide
 - S (1-2 files): Just do it, minimal ceremony
 - M (3-5 files): Write plan before coding
@@ -108,7 +108,7 @@ harness-kit 现状：无此概念。
 
 devpace 有 test_layer_separation.py 确保产品层不引用开发层。
 
-harness-kit 现状：research/ 是只读的规则写在 AGENTS.md 里，但无自动化检测。
+harness-kit 现状：research/ 是只读的规则写在 HARNESS.md 里，但无自动化检测。
 
 建议：加一个简单的 CI check，确保 templates/ 下的文件不引用 research/ 路径。
 

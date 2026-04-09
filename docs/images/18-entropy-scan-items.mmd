@@ -1,0 +1,10 @@
+graph LR
+    A["harness-kit scan"] --> B["未填写的占位符<br/>[framework], [xxx]"]
+    A --> C["超大文件<br/>> 200 行的模板"]
+    A --> D["不可执行的 Hook<br/>缺少 chmod +x"]
+    A --> E["命令不匹配<br/>HARNESS.md 写 pnpm<br/>实际用 npm"]
+
+    style B fill:#ffcdd2
+    style C fill:#ffcdd2
+    style D fill:#ffcdd2
+    style E fill:#ffcdd2

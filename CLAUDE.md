@@ -1,7 +1,7 @@
 # CLAUDE.md — harness-kit
 
 ## Import Universal Rules
-@AGENTS.md
+@HARNESS.md
 
 ## Claude Code Specific Configuration
 

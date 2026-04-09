@@ -1,0 +1,23 @@
+gantt
+    title Harness 成熟度演进计划
+    dateFormat  X
+    axisFormat %s
+
+    section 第 1 周
+    HARNESS.md + CLAUDE.md           :a1, 0, 2
+    代理知道基本规则               :milestone, 2, 0
+
+    section 第 2 周
+    Stop Hook + PreToolUse Hook     :a2, 2, 4
+    验证 + 安全                    :milestone, 4, 0
+
+    section 第 3 周
+    PostToolUse Hook + 3-4 Skills   :a3, 4, 6
+    质量 + 知识                    :milestone, 6, 0
+
+    section 第 4 周
+    Path-specific Rules             :a4, 6, 8
+    上下文感知                     :milestone, 8, 0
+
+    section 持续
+    从观察到的失败中增长 HARNESS.md   :a5, 8, 12

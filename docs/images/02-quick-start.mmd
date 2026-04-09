@@ -1,0 +1,36 @@
+graph TD
+    A["pip install harness-kit"] --> B["harness-kit init"]
+    B --> C{"选择工具"}
+    C -->|claude-code| D1["生成 Claude Code 配置"]
+    C -->|kiro| D2["生成 Kiro 配置"]
+    C -->|both| D3["生成双工具配置"]
+
+    D1 --> E{"选择项目类型"}
+    D2 --> E
+    D3 --> E
+
+    E -->|web-app| F["Web 应用模板"]
+    E -->|api-service| G["API 服务模板"]
+    E -->|cli-tool| H["CLI 工具模板"]
+    E -->|data-pipeline| I["数据管道模板"]
+    E -->|ml-project| J["ML 项目模板"]
+
+    F --> K{"选择等级"}
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+
+    K -->|"Level 1<br/>基础规则"| L1["HARNESS.md<br/>+ CLAUDE.md/.kiro<br/>+ ARCHITECTURE.md"]
+    K -->|"Level 2<br/>+约束"| L2["Level 1 全部<br/>+ Hooks 验证门<br/>+ Constraints"]
+    K -->|"Level 3<br/>完整配置"| L3["Level 2 全部<br/>+ settings.json<br/>+ Hook 连接"]
+
+    L1 --> M["替换占位符<br/>[framework], [tech-stack] 等"]
+    L2 --> M
+    L3 --> M
+
+    M --> N["开始使用 AI 代理"]
+
+    style A fill:#e8eaf6
+    style N fill:#c8e6c9
+    style K fill:#fff3e0

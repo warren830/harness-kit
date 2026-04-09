@@ -17,12 +17,12 @@ harness-kit scan .
 grep -rn "TODO\|FIXME" src/ | head -20
 
 # Check rule file sizes
-wc -l AGENTS.md CLAUDE.md .kiro/steering/*.md 2>/dev/null
+wc -l HARNESS.md CLAUDE.md .kiro/steering/*.md 2>/dev/null
 ```
 
 ## Rule File Health (10 min)
 
-- [ ] **AGENTS.md**: Still accurate? Commands still work? Any new agent failures to add?
+- [ ] **HARNESS.md**: Still accurate? Commands still work? Any new agent failures to add?
 - [ ] **CLAUDE.md**: Config still relevant? Any new forbidden actions needed?
 - [ ] **Kiro steering**: Product/tech/structure files match current reality?
 - [ ] **File sizes**: Any rule file approaching 200 lines? (split if so)

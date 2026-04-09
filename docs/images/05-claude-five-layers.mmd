@@ -1,0 +1,53 @@
+graph TD
+    subgraph "Layer 1 — HARNESS.md（概率性遵守 ~90%）"
+        L1["项目规则、技术栈、命令、约定<br/>跨平台通用"]
+    end
+
+    subgraph "Layer 2 — CLAUDE.md（平台适配）"
+        L2["@import HARNESS.md<br/>模型偏好 | 工作流规则 | 配置"]
+    end
+
+    subgraph "Layer 3 — Hooks（确定性执行 100%）"
+        direction LR
+        H1["PreToolUse<br/>调用工具前拦截"]
+        H2["PostToolUse<br/>调用工具后检查"]
+        H3["Stop<br/>完成任务前验证"]
+    end
+
+    subgraph "Layer 4 — Rules（路径匹配加载）"
+        direction LR
+        R1["api-rules.md<br/>src/api/**"]
+        R2["test-rules.md<br/>**/*.test.*"]
+        R3["ui-rules.md<br/>src/components/**"]
+    end
+
+    subgraph "Layer 5 — Skills（按需加载）"
+        direction LR
+        S1["code-review"]
+        S2["debugging"]
+        S3["refactoring"]
+        S4["...共 12 个"]
+    end
+
+    L1 --> L2
+    L2 --> H1
+    L2 --> H2
+    L2 --> H3
+    H1 --> R1
+    H2 --> R2
+    H3 --> R3
+    R1 --> S1
+    R2 --> S2
+    R3 --> S3
+
+    style L1 fill:#e8eaf6
+    style L2 fill:#e1f5fe
+    style H1 fill:#fff3e0
+    style H2 fill:#fff3e0
+    style H3 fill:#fff3e0
+    style R1 fill:#f3e5f5
+    style R2 fill:#f3e5f5
+    style R3 fill:#f3e5f5
+    style S1 fill:#e8f5e9
+    style S2 fill:#e8f5e9
+    style S3 fill:#e8f5e9

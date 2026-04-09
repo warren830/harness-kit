@@ -8,7 +8,7 @@ description: Documentation writing patterns. Use when creating or updating proje
 
 | Doc Type | Audience | Tone |
 |----------|----------|------|
-| AGENTS.md | AI agents | Directive, specific commands and paths |
+| HARNESS.md | AI agents | Directive, specific commands and paths |
 | README | New developers | Welcoming, quick start focused |
 | ARCHITECTURE.md | Experienced developers | Technical, decision-oriented |
 | API docs | API consumers | Reference-style, example-heavy |

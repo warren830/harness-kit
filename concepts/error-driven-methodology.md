@@ -10,22 +10,22 @@
 > "Anytime you find an agent makes a mistake, you take the time to engineer a solution such that the agent never makes that mistake again."
 > — Mitchell Hashimoto, Feb 2026
 
-**Every line in your AGENTS.md should trace back to a specific, observed agent failure.** Not a best practice you read somewhere. Not a rule you think might be useful. A real mistake the agent actually made in your project.
+**Every line in your HARNESS.md should trace back to a specific, observed agent failure.** Not a best practice you read somewhere. Not a rule you think might be useful. A real mistake the agent actually made in your project.
 
 ---
 
 ## Why This Matters
 
-ETH Zurich studied the effect of AGENTS.md files on agent performance:
+ETH Zurich studied the effect of HARNESS.md files on agent performance:
 
-| AGENTS.md type | Effect on performance |
+| HARNESS.md type | Effect on performance |
 |---|---|
 | Human-written from observed failures | **+4% improvement** |
 | LLM-generated "best practices" | **-20% degradation** |
 
 The LLM-generated rules hurt performance because they add noise. The agent sees 200 lines of generic advice, and the 3 lines that actually matter get lost.
 
-Mitchell Hashimoto's Ghostty project has an AGENTS.md with only 4 lines. Each line fixed a specific agent failure. Result: "almost completely resolved them all."
+Mitchell Hashimoto's Ghostty project has an HARNESS.md with only 4 lines. Each line fixed a specific agent failure. Result: "almost completely resolved them all."
 
 ---
 
@@ -67,7 +67,7 @@ Every agent failure falls into one of four categories:
 
 | Category | Symptom | Solution |
 |----------|---------|----------|
-| **Missing information** | Agent doesn't know your project's conventions | Add to AGENTS.md |
+| **Missing information** | Agent doesn't know your project's conventions | Add to HARNESS.md |
 | **Missing constraint** | Agent violates architectural boundaries | Add linter rule or hook |
 | **Missing tool** | Agent can't verify its own work | Create a script or hook |
 | **Missing context** | Agent doesn't know about a related file/system | Add to knowledge base or create a Skill |
@@ -190,7 +190,7 @@ Only write rules for failures you've actually observed. Speculative rules add no
 
 ### 3. LLM-generated rules
 
-Do not ask an AI to "write an AGENTS.md for my project." The research is clear: this hurts performance. The agent ends up reading generic advice it already knows, drowning out the project-specific rules that actually matter.
+Do not ask an AI to "write an HARNESS.md for my project." The research is clear: this hurts performance. The agent ends up reading generic advice it already knows, drowning out the project-specific rules that actually matter.
 
 ### 4. Duplicate information
 
@@ -229,7 +229,7 @@ Why each line exists:
 ~100 lines structured as a "table of contents" pointing to deeper docs:
 
 ```markdown
-# AGENTS.md
+# HARNESS.md
 
 ## Quick Start
 - Clone and run: `make dev`
@@ -249,19 +249,19 @@ Cross-cutting concerns enter through Providers interface only.
 - [specific list of things agents get wrong]
 ```
 
-Key insight: AGENTS.md is a **table of contents**, not an encyclopedia. It points to detailed docs rather than containing everything.
+Key insight: HARNESS.md is a **table of contents**, not an encyclopedia. It points to detailed docs rather than containing everything.
 
 ### Example 3: Growing a Rule File Over Time
 
 Week 1 (day 1 of using AI agent):
 ```markdown
-# AGENTS.md
+# HARNESS.md
 - Use pnpm, not npm
 ```
 
 Week 2 (after 5 more observed failures):
 ```markdown
-# AGENTS.md
+# HARNESS.md
 ## Commands
 - Use pnpm, not npm
 - Test: `pnpm test -- --watchAll=false`
@@ -273,7 +273,7 @@ Week 2 (after 5 more observed failures):
 
 Week 4 (after 10+ failures):
 ```markdown
-# AGENTS.md
+# HARNESS.md
 ## Commands
 - Use pnpm, not npm
 - Test: `pnpm test -- --watchAll=false`
@@ -294,7 +294,7 @@ Week 4 (after 10+ failures):
 - No docker-compose.yml
 ```
 
-This is how AGENTS.md should grow: **one line per observed failure, accumulated over time.**
+This is how HARNESS.md should grow: **one line per observed failure, accumulated over time.**
 
 ---
 
@@ -302,7 +302,7 @@ This is how AGENTS.md should grow: **one line per observed failure, accumulated 
 
 ### Mistake 1: Writing it all upfront
 
-"Let me write a comprehensive AGENTS.md before we start using the agent."
+"Let me write a comprehensive HARNESS.md before we start using the agent."
 
 This always produces generic, low-value rules. You don't know what the agent will get wrong until you let it try.
 
@@ -312,15 +312,15 @@ This always produces generic, low-value rules. You don't know what the agent wil
 
 You write it once and forget. The project evolves, the rules become stale, the agent starts making mistakes that the outdated rules don't cover.
 
-**Fix**: Treat AGENTS.md like code — it needs maintenance. When you see a new failure, add a rule. When a rule becomes irrelevant, remove it.
+**Fix**: Treat HARNESS.md like code — it needs maintenance. When you see a new failure, add a rule. When a rule becomes irrelevant, remove it.
 
 ### Mistake 3: Making it too long
 
 Past 200 lines, the noise drowns out the signal. Key rules get lost in a sea of generic advice. Agent adherence measurably drops.
 
 **Fix**: If approaching 200 lines, split into:
-- AGENTS.md (top-level directory, ~100 lines)
-- Subdirectory AGENTS.md files (scoped to specific modules)
+- HARNESS.md (top-level directory, ~100 lines)
+- Subdirectory HARNESS.md files (scoped to specific modules)
 - Knowledge base docs (detailed reference the agent can look up when needed)
 
 ### Mistake 4: Not verifying rules work
@@ -333,7 +333,7 @@ You add a rule, assume it works, move on. But the rule might be too vague, or th
 
 ## Checklist: Is My Rule Good?
 
-Before adding a rule to AGENTS.md, check:
+Before adding a rule to HARNESS.md, check:
 
 - [ ] Is this based on an observed failure? (not a guess or best practice)
 - [ ] Is it specific enough? (mentions exact file paths, commands, or patterns)

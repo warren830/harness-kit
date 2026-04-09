@@ -1,15 +1,15 @@
 ---
-name: "AGENTS.md Starter"
-description: Minimal AGENTS.md for solo devs, MVPs, and hackathons. ~30 lines.
-when_to_use: Solo projects, hackathons, MVPs, or your first AGENTS.md ever.
+name: "HARNESS.md Starter"
+description: Minimal HARNESS.md for solo devs, MVPs, and hackathons. ~30 lines.
+when_to_use: Solo projects, hackathons, MVPs, or your first HARNESS.md ever.
 when_not_to_use: Team projects with shared conventions (use standard.md).
 ---
 
-<!-- Copy to your project root as AGENTS.md.
+<!-- Copy to your project root as HARNESS.md.
      Replace [brackets] with your info, then delete these comments.
      Add lines ONLY when you observe the agent making a mistake. -->
 
-# AGENTS.md
+# HARNESS.md
 
 [Project name]: [One sentence description].
 

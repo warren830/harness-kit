@@ -2,7 +2,7 @@
 name: Claude Code Skills Template Guide
 description: Progressive disclosure system — agent loads specialized knowledge only when needed.
 when_to_use: Projects where context window bloat is a concern, or where tasks require specialized knowledge.
-when_not_to_use: If your AGENTS.md is under 50 lines, you probably don't need skills yet.
+when_not_to_use: If your HARNESS.md is under 50 lines, you probably don't need skills yet.
 ---
 
 # Claude Code Skills
@@ -13,7 +13,7 @@ Skills are loadable instruction sets that Claude Code loads **on demand**, not a
 
 ```
 Without Skills: All knowledge loaded upfront → context fills fast → performance drops
-With Skills:    AGENTS.md loaded always, skills loaded when relevant → lean context → better performance
+With Skills:    HARNESS.md loaded always, skills loaded when relevant → lean context → better performance
 ```
 
 LangChain found that Claude Code achieved **82% task completion with skills vs. 9% without**.
@@ -24,14 +24,14 @@ LangChain found that Claude Code achieved **82% task completion with skills vs. 
 
 LangChain's testing showed 12 well-structured skills outperform 20 fragmented ones. Each skill should cover a **cohesive domain**, not a single command.
 
-### 2. Skills complement AGENTS.md, they don't replace it
+### 2. Skills complement HARNESS.md, they don't replace it
 
 ```
-AGENTS.md:  "Run tests with `npm test -- --watchAll=false`"     ← always loaded
+HARNESS.md:  "Run tests with `npm test -- --watchAll=false`"     ← always loaded
 Skill:      Full debugging methodology with 15 steps             ← loaded when debugging
 ```
 
-Put frequently-needed facts in AGENTS.md. Put detailed methodologies in Skills.
+Put frequently-needed facts in HARNESS.md. Put detailed methodologies in Skills.
 
 ### 3. Under 2% of context window per skill
 

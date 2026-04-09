@@ -1,87 +1,132 @@
 # harness-kit
 
-**Don't spend 5 months building your harness from scratch. Start with harness-kit.**
+**Make your AI coding agent stop guessing and start following rules.**
 
-An open-source CLI toolkit for [Harness Engineering](concepts/harness-philosophy.md) -- build constraints, feedback loops, and control systems around AI coding agents.
-
-> **v0.2**: Reorganized around [Martin Fowler's Harness Engineering framework](concepts/fowler-framework-guide.md). New guides: [Autonomy Grading](concepts/autonomy-grading-guide.md), [Verification Pyramid](concepts/verification-pyramid-guide.md), [Context Budget](concepts/context-budget-guide.md).
+harness-kit generates constraint files (HARNESS.md, hooks, skills) into your project so Claude Code, Kiro, and other AI agents know what to do — and what not to do.
 
 ```bash
 pip install harness-kit
-
-harness-kit init ~/my-project/        # Generate harness files (auto-detects tech stack)
-harness-kit score ~/my-project/       # Assess harness maturity (Level 0-7, Grade F-S)
-harness-kit scan ~/my-project/        # Detect entropy (stale rules, doc drift)
-```
-
-## Why?
-
-Same model, different harness, dramatically different results:
-
-| Experiment | Without Harness | With Harness | Source |
-|---|---|---|---|
-| Claude Code task completion | 9% | **82%** | LangChain Skills Test, 2026 |
-| Terminal Bench 2.0 ranking | #30 | **#5** | LangChain, GPT-5.2-Codex (model unchanged) |
-| OpenAI internal product | 0 lines shipped | **1M lines in 5 months** | OpenAI, 3 engineers, zero hand-written code |
-| Stripe weekly output | -- | **1,300+ AI PRs merged/week** | Stripe Minions system |
-
-**The model is commodity. The harness is moat.**
-
-## How It Works
-
-harness-kit is a **generator**, not a dependency. It produces files into your project, then you own them.
-
-```
-harness-kit (stays separate)        your-project/
-┌──────────────────┐                ┌──────────────────────────┐
-│  concepts/       │───learn─────→  │ (understand the theory)  │
-│  (theory)        │                │                          │
-│                  │───init──────→  │ AGENTS.md                │
-│  harness/        │                │ CLAUDE.md                │
-│  (templates)     │───score─────→  │ .kiro/steering/          │
-│                  │                │ .claude/hooks/           │
-│  tools/          │───scan──────→  │ .claude/skills/          │
-│  (CLI)           │                │ docs/ARCHITECTURE.md     │
-└──────────────────┘                └──────────────────────────┘
-```
-
-### Dual-Layer Architecture
-
-```
-concepts/   WHY & WHAT    Theory, frameworks, methodology (Fowler, autonomy, verification)
-harness/    HOW & DO IT   Copy-paste-ready templates, organized by tool
-```
-
-## Quick Start
-
-### 1. Install
-
-```bash
-pip install harness-kit
-```
-
-### 2. Initialize
-
-```bash
-# Interactive (recommended first time)
 harness-kit init ~/my-project/
-
-# Non-interactive
-harness-kit init ~/my-project/ --tools both --type web-app --level 2
-
-# Auto-detects from pyproject.toml / package.json:
-#   project name, tech stack, commands, directory structure
 ```
 
-### 3. Customize
+## Before / After
 
-Edit the generated `AGENTS.md` -- replace `[placeholders]` with your project's real info. **Leave "Agent Pitfalls" empty** -- it grows from observed failures.
+Without a harness, the agent guesses. With a harness, it follows your rules:
 
-### 4. Use your agent, observe, iterate
+```
+WITHOUT HARNESS                          WITH HARNESS
+─────────────────                        ─────────────────
+"Let me restructure your DB schema"      Checks HARNESS.md: "Never modify schema
+                                          without a migration file" → writes migration
 
-Every time the agent makes a mistake, add one line to AGENTS.md. This is [error-driven writing](concepts/error-driven-methodology.md) -- the core methodology.
+"I'll add this to the main file"         Checks layer rules: "UI cannot import
+                                          from data layer" → creates proper module
 
-### 5. Track progress
+"Done! (no tests)"                       Hook fires: "require-tests.sh" blocks
+                                          completion until tests pass
+
+"Let me refactor this whole thing"       Checks boundaries: "Ask First before
+                                          deleting files" → asks for permission
+```
+
+> Same model. Same prompt. Different harness. **9% → 82% task completion** (LangChain, 2026).
+
+## Pick Your Level
+
+| | Starter | Standard | Advanced |
+|---|---|---|---|
+| **You are** | Solo dev, hacking | Team with shared codebase | Enterprise, compliance-aware |
+| **Time to set up** | 30 seconds | 5 minutes | 15 minutes |
+| **What you get** | HARNESS.md (~30 lines) | HARNESS.md + hooks + docs | Full harness + skills + isolation |
+| **Start here** | [Starter Guide](#starter-30-seconds) | [Standard Guide](#standard-5-minutes) | [Advanced Guide](#advanced-15-minutes) |
+
+---
+
+## Starter (30 seconds)
+
+Copy one file into your project. Done.
+
+```bash
+# Option A: Use the CLI
+harness-kit init ~/my-project/ --level 1
+
+# Option B: Copy manually
+cp harness/universal/harness-md/starter.md ~/my-project/HARNESS.md
+```
+
+Edit the `[placeholders]` in HARNESS.md with your project's real info. That's it.
+
+The starter template gives your agent:
+- Your tech stack and commands (`npm test`, `ruff check`, etc.)
+- Permission boundaries (what it can always do / must ask first / must never do)
+- A "Pitfalls" section that starts empty — you fill it when the agent makes mistakes
+
+**What to do next:** Use your agent normally. When it makes a mistake, add one line to the Pitfalls section. This is [error-driven writing](concepts/error-driven-methodology.md) — rules grow from real failures, not guesses.
+
+---
+
+## Standard (5 minutes)
+
+For teams. Adds hooks (automated enforcement) and project docs.
+
+```bash
+harness-kit init ~/my-project/ --tools claude-code --level 2
+```
+
+You get:
+
+```
+HARNESS.md                    ← Agent rules (~80 lines, commands-first)
+CLAUDE.md                    ← Claude Code adapter (imports HARNESS.md)
+.claude/hooks/
+  require-tests.sh           ← Blocks "done" until tests pass
+  block-destructive.sh       ← Blocks rm -rf, DROP TABLE, force-push
+  auto-lint.sh               ← Auto-formats after every edit
+docs/ARCHITECTURE.md         ← Architecture doc skeleton
+```
+
+**Why hooks matter:** HARNESS.md is a suggestion — the agent *should* follow it but sometimes doesn't. Hooks are enforcement — the agent *cannot* bypass them.
+
+```
+HARNESS.md says "run tests before finishing"     → Agent might forget
+require-tests.sh fires at stop phase            → Agent literally cannot skip tests
+```
+
+Using Kiro? Replace `--tools claude-code` with `--tools kiro` or `--tools both`.
+
+---
+
+## Advanced (15 minutes)
+
+Full harness with skills (on-demand knowledge), verification layers, and isolation.
+
+```bash
+harness-kit init ~/my-project/ --tools both --level 3
+```
+
+Beyond Standard, you get:
+- **Skills**: 13 on-demand guides the agent loads when needed (debugging, code-review, security-audit, etc.)
+- **Rules**: Path-specific constraints (different rules for `/api/` vs `/ui/` vs `/tests/`)
+- **Kiro steering**: Product context, tech context, structure docs for Kiro's always-on knowledge
+- **Kiro specs**: Structured feature/bugfix templates for spec-driven development
+
+Read the full setup guide: [concepts/claude-code-guide.md](concepts/claude-code-guide.md) | [concepts/kiro-guide.md](concepts/kiro-guide.md)
+
+---
+
+## Growing Your Harness
+
+Your harness improves over time. Here's the progression:
+
+```
+Week 1    HARNESS.md + basic hooks              "Agent follows my rules"
+Week 2    Add pitfalls as agent makes mistakes  "Agent stops repeating errors"
+Week 3    Add skills for complex tasks          "Agent knows how I debug/review"
+Month 2   Add constraints + entropy management  "Agent respects architecture"
+Month 3   Full verification + isolation          "Agent can work autonomously"
+```
+
+Track your progress:
 
 ```bash
 harness-kit score ~/my-project/
@@ -89,106 +134,48 @@ harness-kit score ~/my-project/
 # Recommendations:
 #   > Add: Claude Code Skills (Level 5)
 #   > Add: Pre-commit hooks (Level 2)
+
+harness-kit scan ~/my-project/
+# Checks: unfilled placeholders, stale rules, command mismatches
 ```
 
-## What's Inside
+## Learn More
 
-### Concepts (13 guides)
-
-| Guide | What You'll Learn |
+| Topic | Guide |
 |---|---|
-| [Getting Started](concepts/getting-started.md) | 5-minute setup path |
-| [Fowler Framework](concepts/fowler-framework-guide.md) | **NEW** Guides/Sensors dual-control system |
-| [Autonomy Grading](concepts/autonomy-grading-guide.md) | **NEW** What tasks are fully autonomous vs human-required |
-| [Verification Pyramid](concepts/verification-pyramid-guide.md) | **NEW** Layered verification: linter → tests → formal methods |
-| [Context Budget](concepts/context-budget-guide.md) | **NEW** 40% utilization ceiling, dumb zone, sub-agent firewall |
-| [Error-Driven Writing](concepts/error-driven-methodology.md) | **Core methodology** -- how to write rules that work |
-| [Philosophy](concepts/harness-philosophy.md) | Three generations of AI engineering |
-| [Claude Code Guide](concepts/claude-code-guide.md) | Complete Hooks + Skills + Rules guide |
-| [Kiro Guide](concepts/kiro-guide.md) | Complete Steering + Specs + Hooks guide |
-| [Anti-Patterns](concepts/anti-patterns.md) | Things NOT to do (research-backed) |
-| [Retrofitting](concepts/retrofitting-guide.md) | Adding harness to existing projects |
+| **Why this works** | [Harness Philosophy](concepts/harness-philosophy.md) — three generations of AI engineering |
+| **How to write rules** | [Error-Driven Writing](concepts/error-driven-methodology.md) — the core methodology |
+| **Fowler's framework** | [Guides/Sensors](concepts/fowler-framework-guide.md) — the theory behind harness design |
+| **What NOT to do** | [Anti-Patterns](concepts/anti-patterns.md) — common mistakes, research-backed |
+| **Agent autonomy** | [Autonomy Grading](concepts/autonomy-grading-guide.md) — what tasks need human review |
+| **Context limits** | [Context Budget](concepts/context-budget-guide.md) — 40% ceiling, dumb zone, sub-agent firewall |
+| **Existing project** | [Retrofitting Guide](concepts/retrofitting-guide.md) — add harness without disrupting flow |
+| **Dual-tool setup** | [Claude Code + Kiro](concepts/dual-tool-workflow.md) — collaboration patterns |
 
-### Harness Templates (70+ files)
+## Research
 
-| Category | Count | Platforms | Key Files |
-|---|---|---|---|
-| [AGENTS.md](harness/universal/agents-md/) | 5 | All | starter, standard, advanced, monorepo, writing-guide |
-| [Knowledge Base](harness/universal/knowledge-base/) | 7 | All | ARCHITECTURE, QUALITY, BELIEFS, TECH-DEBT, PLANS |
-| [Constraints](harness/universal/constraints/) | 2 | All | layer-rules, error-message-design |
-| [Entropy](harness/universal/entropy/) | 3 | All | golden-principles, quality-grades, weekly-review |
-| [Hooks](harness/claude-code/hooks/) | 8 | Claude Code | block-destructive, auto-lint, require-tests, ... |
-| [Skills](harness/claude-code/skills/) | 13 | Claude Code | code-review, debugging, refactoring, test-writing, ... |
-| [Rules](harness/claude-code/rules/) | 3 | Claude Code | api-rules, test-rules, ui-rules |
-| [Steering](harness/kiro/steering/) | 7 | Kiro | product, tech, structure + auto/manual modes |
-| [Specs](harness/kiro/specs/) | 5 | Kiro | feature (req/design/tasks), bugfix |
-| [Combo](harness/combo/) | 6 | Both | Dual-tool scaffold + workflow guide |
-| [Environments](harness/environments/) | 3 | All | worktree-setup, teardown, docker-compose |
-| [CI](harness/ci/) | 2 | All | harness-check, entropy-scan workflows |
+Built on data from real teams, not opinions:
 
-### CLI Tools
-
-| Command | What It Does |
+| Source | Key Finding |
 |---|---|
-| `harness-kit init` | Generates harness files. Auto-detects tech stack. Supports `--tools`, `--type`, `--level`. |
-| `harness-kit score` | Scores your project 0-70 across 7 maturity levels. Grade F-S + recommendations. |
-| `harness-kit scan` | Finds unfilled placeholders, oversized rule files, command mismatches. |
-
-## Harness Maturity Model
-
-```
-Level 0: None          Agent runs blind
-Level 1: Rules         AGENTS.md exists
-Level 2: Constraints   + Linter + type checker + hooks
-Level 3: Verification  + Agent can run tests and self-check
-Level 4: Feedback      + Error messages include fix suggestions
-Level 5: Context       + Skills / progressive disclosure
-Level 6: Isolation     + Isolated environments (worktree/devbox)
-Level 7: Autonomous    + Entropy management + multi-agent coordination
-```
-
-Grade: **F**(0-15) / **D**(16-30) / **C**(31-45) / **B**(46-60) / **A**(61-70) / **S**(71+)
-
-## The Core Methodology: Error-Driven Writing
-
-> "Anytime you find an agent makes a mistake, you take the time to engineer a solution such that the agent never makes that mistake again." -- Mitchell Hashimoto
-
-Every line in your AGENTS.md should trace back to a real, observed agent failure. Not a best practice you read somewhere. Not a rule you think might be useful.
-
-ETH Zurich found: LLM-generated AGENTS.md files **hurt** performance by 20%. Human-written, error-driven rules **help** by 4%.
-
-Read the full methodology: [Error-Driven Writing Guide](concepts/error-driven-methodology.md)
+| [GitHub (2500 repos)](research/research-06-2026-harness-md-context.md) | Commands-first HARNESS.md, < 150 lines, no architecture overview |
+| [Martin Fowler](research/research-05-fowler-harness-framework.md) | Guides/Sensors framework, Harnessability concept |
+| [Datadog](research/research-07-2026-production-cases.md) | Verification pyramid, formal methods for agents |
+| [Harvey AI](research/research-07-2026-production-cases.md) | 40.8% → 87.7% success with evaluator-optimizer loop |
+| [OpenAI](research/research-02-openai-langchain.md) | 1M LOC, 3 engineers, zero hand-written code |
+| [ETH Zurich](research/research-04-eth-zurich-risks.md) | LLM-generated HARNESS.md *hurts* performance by 20% |
 
 ## Supported Platforms
 
-| Platform | Status | What's Included |
-|---|---|---|
-| **Claude Code** | v0.1.0 | CLAUDE.md adapter, 6 hooks, 12 skills, 3 path rules |
-| **Kiro** | v0.1.0 | Steering templates (4 modes), feature + bugfix specs, 2 hooks |
-| Cursor | Planned | .cursor/rules/ templates |
-| GitHub Copilot | Planned | copilot-instructions.md templates |
-
-## Based on Research
-
-Encodes practices from leading teams:
-
-- [Mitchell Hashimoto](research/research-01-mitchell-hashimoto.md) -- Coined "Harness Engineering" (Feb 2026)
-- [OpenAI](research/research-02-openai-langchain.md) -- 1M LOC case study, A-G framework
-- [Stripe](research/research-03-thoughtworks-industry.md) -- Minions system, Blueprints, Toolshed
-- [LangChain](research/research-02-openai-langchain.md) -- Terminal Bench optimization, harness anatomy
-- [Boeckeler / Thoughtworks](research/research-03-thoughtworks-industry.md) -- Three pillars, four hypotheses
-
-Full research: [research/](research/)
+| Platform | What You Get |
+|---|---|
+| **Claude Code** | CLAUDE.md adapter, hooks (pre/post/stop), skills, path rules |
+| **Kiro** | Steering docs (product/tech/structure), feature + bugfix specs, hooks |
+| **Both** | All of the above + dual-tool workflow guide |
 
 ## Contributing
 
 PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Priority areas:
-- Real-world AGENTS.md examples from your projects
-- Platform support (Cursor, Copilot)
-- harness-score detection improvements
-- Translations
 
 ## License
 

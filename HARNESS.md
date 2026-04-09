@@ -1,7 +1,7 @@
-# AGENTS.md — harness-kit
+# HARNESS.md — harness-kit
 
 > This file is the universal entry point for any AI coding agent working on this project.
-> Both Kiro (auto-detected) and Claude Code (via @AGENTS.md in CLAUDE.md) read this file.
+> Claude Code reads this via `@HARNESS.md` in CLAUDE.md. Kiro uses `.kiro/steering/` as primary config.
 
 ## Project Overview
 
@@ -20,7 +20,7 @@ harness-kit is an open-source toolkit for Harness Engineering — helping teams 
 ```
 concepts/        — Theory & methodology (Fowler framework, autonomy grading, guides)
 harness/         — Copy-paste-ready templates, organized by tool
-  universal/     — Cross-platform (AGENTS.md variants, knowledge-base, constraints, entropy)
+  universal/     — Cross-platform (HARNESS.md variants, knowledge-base, constraints, entropy)
   claude-code/   — Claude Code specific (hooks, skills, rules)
   kiro/          — Kiro specific (steering, specs, hooks)
   combo/         — Claude Code + Kiro dual-tool collaboration
@@ -41,17 +41,17 @@ research/        — Research materials (read-only reference)
 
 - Every template file MUST include a "When to use" and "When NOT to use" section
 - Every rule/constraint in a template MUST have a concrete example, not abstract advice
-- AGENTS.md templates: starter ~30 lines, standard ~80 lines, advanced ~150 lines (GitHub 2500-repo data)
+- HARNESS.md templates: starter ~30 lines, standard ~80 lines, advanced ~150 lines (GitHub 2500-repo data)
 - Keep English for code/technical terms, provide Chinese translations in separate `-zh.md` files
 - Template files use `.md` extension with optional YAML frontmatter for metadata
 
 ## Known Agent Pitfalls (Error-Driven)
 
-- Do NOT auto-generate AGENTS.md content with LLMs — ETH Zurich research shows this hurts performance by 20%+
+- Do NOT auto-generate HARNESS.md content with LLMs — ETH Zurich research shows this hurts performance by 20%+
 - Do NOT write speculative rules ("the agent might do X") — only write rules based on observed failures
 - Do NOT put research/ files content into templates — research is reference material, not template content
 - The `research/` directory is read-only reference; do not modify those files when working on templates
-- When creating example AGENTS.md files, always base them on real project scenarios, not hypothetical ones
+- When creating example HARNESS.md files, always base them on real project scenarios, not hypothetical ones
 - Do NOT add harness/ templates without ensuring they have "When to use / When NOT to use" sections
 
 ## Verification

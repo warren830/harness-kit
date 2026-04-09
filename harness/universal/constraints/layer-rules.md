@@ -39,7 +39,7 @@ Layer 1: Types / Schemas   — Can import: Nothing (leaf layer)
 
 ## Enforcement Options
 
-### 1. AGENTS.md Rule (soft — ~90% compliance)
+### 1. HARNESS.md Rule (soft — ~90% compliance)
 ```markdown
 ## Architecture Rules
 - UI must NOT import from repositories/

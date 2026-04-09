@@ -61,15 +61,15 @@ cp harness-kit/harness/kiro/steering/debugging-guide.md .kiro/steering/
 
 Or use `harness-kit init --tools kiro` to generate automatically.
 
-## AGENTS.md Integration
+## HARNESS.md Integration
 
-Kiro auto-detects AGENTS.md at the project root. This means:
-- Your AGENTS.md universal rules are always available to Kiro
+Kiro auto-detects HARNESS.md at the project root. This means:
+- Your HARNESS.md universal rules are always available to Kiro
 - Steering files provide Kiro-specific enhancements on top
-- No need to duplicate AGENTS.md content in steering files
+- No need to duplicate HARNESS.md content in steering files
 
 ```
-AGENTS.md               ← auto-detected, always loaded (no inclusion modes)
+HARNESS.md               ← auto-detected, always loaded (no inclusion modes)
 .kiro/steering/
   product.md             ← inclusion: always
   tech.md                ← inclusion: always

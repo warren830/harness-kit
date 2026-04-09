@@ -1,4 +1,4 @@
-# AGENTS.md
+# HARNESS.md
 
 > Shared rules for all AI coding agents. Both Kiro and Claude Code read this file.
 

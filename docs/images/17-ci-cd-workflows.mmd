@@ -1,0 +1,23 @@
+graph TD
+    subgraph "harness-check.yml — 每次 PR 触发"
+        A["PR 提交"] --> B["检查规则文件存在<br/>HARNESS.md / CLAUDE.md"]
+        B --> C["检查占位符<br/>是否有未填写的 [xxx]"]
+        C --> D["检查 Hook 脚本<br/>是否可执行"]
+        D --> E["检查文件大小<br/>警告 > 200 行"]
+        E --> F{"全部通过？"}
+        F -->|"是"| G["PR 检查通过 ✅"]
+        F -->|"否"| H["PR 检查失败 ❌<br/>需要修复"]
+    end
+
+    subgraph "entropy-scan.yml — 每周一 9:00 UTC"
+        I["定时触发"] --> J["harness-kit scan<br/>检测熵"]
+        J --> K["harness-kit score<br/>计算成熟度"]
+        K --> L{"发现问题？"}
+        L -->|"是"| M["自动创建 GitHub Issue<br/>列出具体问题"]
+        L -->|"否"| N["一切正常 ✅"]
+    end
+
+    style G fill:#c8e6c9
+    style H fill:#ffcdd2
+    style N fill:#c8e6c9
+    style M fill:#fff3e0

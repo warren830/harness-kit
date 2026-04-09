@@ -1,6 +1,6 @@
 ---
 name: Claude Code + Kiro Dual-Tool Collaboration
-description: How to use both tools together with a shared AGENTS.md as the bridge.
+description: How to use both tools together with a shared HARNESS.md as the bridge.
 ---
 
 # Claude Code + Kiro: Dual-Tool Setup
@@ -8,14 +8,14 @@ description: How to use both tools together with a shared AGENTS.md as the bridg
 ## Architecture
 
 ```
-AGENTS.md (shared bridge)
+HARNESS.md (shared bridge)
   │
   ├── Kiro reads automatically (auto-detected at project root)
   │     + .kiro/steering/ (Kiro-specific enhancements)
   │     + .kiro/specs/ (structured feature development)
   │
   └── Claude Code reads via @import
-        CLAUDE.md (@AGENTS.md)
+        CLAUDE.md (@HARNESS.md)
         + .claude/hooks/ (deterministic enforcement)
         + .claude/skills/ (progressive disclosure)
         + .claude/rules/ (path-specific context)

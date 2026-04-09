@@ -17,7 +17,7 @@ Skills (on-demand)        ← Loaded when the task matches the skill's domain
   ↓
 CLAUDE.md (always loaded) ← Probabilistic guidelines (~90% followed)
   ↓
-AGENTS.md (imported)      ← Universal rules, shared with other tools
+HARNESS.md (imported)      ← Universal rules, shared with other tools
 ```
 
 ## Quick Setup
@@ -33,13 +33,13 @@ harness-kit init --tools claude-code --level 3
 # 4. Copy rules to .claude/rules/
 ```
 
-## Layer 1: CLAUDE.md + AGENTS.md
+## Layer 1: CLAUDE.md + HARNESS.md
 
-CLAUDE.md is loaded at every session start. It imports AGENTS.md for universal rules and adds Claude-specific config.
+CLAUDE.md is loaded at every session start. It imports HARNESS.md for universal rules and adds Claude-specific config.
 
 ```markdown
 # CLAUDE.md
-@AGENTS.md                    ← imports universal rules
+@HARNESS.md                    ← imports universal rules
 
 ## Claude Code Configuration
 - Don't auto-commit without confirmation
@@ -161,8 +161,8 @@ A fully harnessed Claude Code project:
 
 ```
 my-project/
-├── AGENTS.md                          ← Universal rules (shared with Kiro)
-├── CLAUDE.md                          ← Claude config (@imports AGENTS.md)
+├── HARNESS.md                          ← Universal rules (shared with Kiro)
+├── CLAUDE.md                          ← Claude config (@imports HARNESS.md)
 ├── .claude/
 │   ├── settings.json                  ← Hooks wiring
 │   ├── hooks/
@@ -195,10 +195,10 @@ my-project/
 
 | Week | Add | Impact |
 |------|-----|--------|
-| 1 | AGENTS.md + CLAUDE.md | Agent knows your project basics |
+| 1 | HARNESS.md + CLAUDE.md | Agent knows your project basics |
 | 2 | Stop hook (require-tests) | Agent verifies its own work |
 | 2 | PreToolUse hook (block-destructive) | Agent can't break things |
 | 3 | PostToolUse hook (auto-lint) | Code quality maintained automatically |
 | 3 | 3-4 Skills (review, debug, test, refactor) | Agent has specialized knowledge |
 | 4 | Path-specific rules (API, test, UI) | Context-appropriate guidance |
-| 4+ | Grow AGENTS.md from observed failures | Harness improves every day |
+| 4+ | Grow HARNESS.md from observed failures | Harness improves every day |

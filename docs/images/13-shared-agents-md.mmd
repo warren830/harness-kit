@@ -1,0 +1,12 @@
+graph TD
+    A["HARNESS.md<br/>单一事实来源"] --> B["Claude Code 读取"]
+    A --> C["Kiro 自动检测并读取"]
+
+    B --> D["CLAUDE.md<br/>@import HARNESS.md<br/>+ Claude 专属配置"]
+    C --> E[".kiro/steering/<br/>HARNESS.md 自动加载<br/>+ Kiro 专属配置"]
+
+    F["你添加一条规则到 HARNESS.md"] --> A
+    F --> G["两个工具同时受益<br/>无需重复维护"]
+
+    style A fill:#fff3e0
+    style G fill:#c8e6c9

@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant User as 用户
+    participant CC as Claude Code
+    participant Pre as PreToolUse Hook
+    participant Tool as 工具执行
+    participant Post as PostToolUse Hook
+    participant Stop as Stop Hook
+
+    User->>CC: 给出任务
+    CC->>Pre: 准备调用工具
+    Pre-->>Pre: block-destructive.sh<br/>检查是否有危险操作
+    Pre-->>Pre: restrict-paths.sh<br/>检查路径是否允许
+
+    alt 被拦截
+        Pre-->>CC: ❌ 阻止执行
+        CC->>User: 报告被拦截原因
+    else 允许通过
+        Pre-->>Tool: ✅ 允许执行
+        Tool->>Post: 执行完成
+        Post-->>Post: auto-lint.sh<br/>自动修复格式
+        Post-->>Post: auto-format.sh<br/>统一代码风格
+    end
+
+    CC->>Stop: 准备结束任务
+    Stop-->>Stop: require-tests.sh<br/>检查测试是否通过
+    Stop-->>Stop: require-lint.sh<br/>检查 lint 是否通过
+
+    alt 验证失败
+        Stop-->>CC: ❌ 必须修复后才能完成
+        CC->>CC: 自动修复问题
+        CC->>Stop: 重新验证
+    else 验证通过
+        Stop-->>CC: ✅ 任务完成
+        CC->>User: 交付结果
+    end

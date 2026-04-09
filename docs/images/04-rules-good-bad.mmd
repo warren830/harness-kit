@@ -1,0 +1,25 @@
+graph LR
+    subgraph "✅ 应该写的规则"
+        A1["代理用错命令<br/>npm → pnpm"]
+        A2["代理不知道的约定<br/>组件必须用 PascalCase"]
+        A3["项目特有路径<br/>配置文件在 config/"]
+        A4["验证方法<br/>test → lint → build"]
+        A5["架构边界<br/>UI 层不可直接访问 DB"]
+    end
+
+    subgraph "❌ 不应该写的规则"
+        B1["通用编程建议<br/>使用有意义的变量名"]
+        B2["推测性规则<br/>代理可能会用旧 API"]
+        B3["AI 生成的规则<br/>让 AI 自己写 HARNESS.md"]
+        B4["重复配置<br/>已在 package.json 中"]
+    end
+
+    style A1 fill:#c8e6c9
+    style A2 fill:#c8e6c9
+    style A3 fill:#c8e6c9
+    style A4 fill:#c8e6c9
+    style A5 fill:#c8e6c9
+    style B1 fill:#ffcdd2
+    style B2 fill:#ffcdd2
+    style B3 fill:#ffcdd2
+    style B4 fill:#ffcdd2

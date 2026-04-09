@@ -1,0 +1,25 @@
+graph TD
+    subgraph "场景 1: 新功能开发"
+        A1["Kiro: 创建 Feature Spec"] --> B1["审查 + 优化"] --> C1["Claude Code: 实现代码"] --> D1["Hooks 验证"]
+    end
+
+    subgraph "场景 2: Bug 修复"
+        A2{"Bug 复杂度"}
+        A2 -->|"简单"| B2["Claude Code<br/>debugging Skill"]
+        A2 -->|"复杂"| C2["Kiro<br/>Bugfix Spec 系统分析"]
+        B2 --> D2["验证修复"]
+        C2 --> D2
+    end
+
+    subgraph "场景 3: 代码审查"
+        A3["Claude Code<br/>code-review Skill"] --> B3["系统化检查清单"] --> C3["可并行 subagent"]
+    end
+
+    subgraph "场景 4: 熵清理"
+        A4["Claude Code<br/>entropy-cleanup Skill"] --> B4["harness-kit scan"] --> C4["可作为后台任务"]
+    end
+
+    style D1 fill:#c8e6c9
+    style D2 fill:#c8e6c9
+    style C3 fill:#c8e6c9
+    style C4 fill:#c8e6c9

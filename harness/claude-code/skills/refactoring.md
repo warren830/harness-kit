@@ -42,4 +42,4 @@ When refactoring across modules, follow dependency order (leaf → root):
 
 - Code you're not tasked with changing (stay focused)
 - Code with no tests (add tests first, then refactor)
-- Code in protected modules (check AGENTS.md for restrictions)
+- Code in protected modules (check HARNESS.md for restrictions)

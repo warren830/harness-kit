@@ -1,0 +1,16 @@
+graph LR
+    A["harness-kit"] --> B["init<br/>初始化"]
+    A --> C["score<br/>评分"]
+    A --> D["scan<br/>扫描"]
+
+    B --> B1["--tools claude-code|kiro|both"]
+    B --> B2["--type web-app|api-service|..."]
+    B --> B3["--level 1|2|3"]
+    B --> B4["--skip-existing"]
+
+    C --> C1["--format text|json"]
+
+    style A fill:#e8eaf6
+    style B fill:#e1f5fe
+    style C fill:#fff3e0
+    style D fill:#e8f5e9
